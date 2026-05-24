@@ -139,20 +139,55 @@ export default function WritingPage() {
             {Object.entries(rules.platforms).map(([platform, rule]) => {
               const count = monthlyPlatformCount[platform] || 0
               const thresholds = Object.keys(rule.rules).map(Number).sort((a, b) => a - b)
-              const nextThreshold = thresholds.find(t => t > count) || thresholds[thresholds.length - 1]
-              const reward = rule.rules[nextThreshold] || 0
-              const progress = nextThreshold ? Math.min(100, (count / nextThreshold) * 100) : 100
+
+              // 当前已达到的奖金（找到所有 <= count 的阈值，取最大）
+              const achieved = thresholds.filter(t => t <= count)
+              const currentReward = achieved.length > 0 ? rule.rules[Math.max(...achieved)] : 0
+
+              // 下一档目标
+              const nextThreshold = thresholds.find(t => t > count)
+              const nextReward = nextThreshold ? rule.rules[nextThreshold] : null
+
+              // 进度：到下一档的进度（或 100%）
+              const progress = nextThreshold
+                ? Math.min(100, (count / nextThreshold) * 100)
+                : 100
+
+              const isMax = !nextThreshold && count > 0
+
               return (
                 <div key={platform} className="rounded-2xl p-3 shadow-sm border-2"
                   style={{ background: '#fff', borderColor: '#ffe0e8' }}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>{platform}</span>
-                    <span className="text-xs" style={{ color: '#a890a0' }}>{count}篇 / {nextThreshold}篇</span>
+                    <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>
+                      {platform} {rule.editor && <span className="text-xs" style={{color: '#a890a0'}}>({rule.editor})</span>}
+                    </span>
+                    <span className="text-xs" style={{ color: '#a890a0' }}>
+                      {count}篇{nextThreshold ? ` / ${nextThreshold}篇` : ''}
+                    </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="h-2.5 rounded-full" style={{ width: `${progress}%`, background: progress >= 100 ? '#4caf50' : 'linear-gradient(90deg,#ff6b9d,#c44dff)' }}></div>
+                    <div className="h-2.5 rounded-full transition-all"
+                      style={{
+                        width: `${progress}%`,
+                        background: isMax ? '#4caf50' : 'linear-gradient(90deg,#ff6b9d,#c44dff)'
+                      }}>
+                    </div>
                   </div>
-                  <p className="text-xs mt-1" style={{ color: '#a890a0' }}>奖金: ¥{reward} {rule.note && `(${rule.note})`}</p>
+                  <div className="flex items-center justify-between mt-1">
+                    <p className="text-xs" style={{ color: '#4a3548' }}>
+                      <span className="font-semibold" style={{ color: currentReward > 0 ? '#4caf50' : '#a890a0' }}>
+                        已得: ¥{currentReward}
+                      </span>
+                      {nextReward && (
+                        <span style={{ color: '#a890a0' }}> → 下一档: ¥{nextReward}</span>
+                      )}
+                      {isMax && (
+                        <span style={{ color: '#4caf50' }}> (已满)</span>
+                      )}
+                    </p>
+                    {rule.note && <p className="text-xs" style={{ color: '#a890a0' }}>{rule.note}</p>}
+                  </div>
                 </div>
               )
             })}
