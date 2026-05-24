@@ -3,8 +3,10 @@
  * 文档：https://platform.deepseek.com/docs
  */
 
-const DEEPSEEK_API_BASE = 'https://api.deepseek.com'
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY!
+const DEEPEEK_API_BASE = 'https://api.deepseek.com'
+// 兼容两种变量名：本地用 DEEPEEK_API_KEY，Vercel 上是 DEEPEEK_API_KEY（无法改名）
+const DEEPEEK_API_KEY =
+  process.env.DEEPSEEK_API_KEY || process.env.DEEPEEK_API_KEY || ''
 
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant'
@@ -16,11 +18,15 @@ export interface ChatMessage {
  * 返回原始 Response（SSE stream）
  */
 export async function chatStream(messages: ChatMessage[]) {
-  const res = await fetch(`${DEEPSEEK_API_BASE}/chat/completions`, {
+  if (!DEEPEEK_API_KEY) {
+    throw new Error('缺少 DEEPEEK_API_KEY 环境变量')
+  }
+
+  const res = await fetch(`${DEEPEEK_API_BASE}/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+      'Authorization': `Bearer ${DEEPEEK_API_KEY}`,
     },
     body: JSON.stringify({
       model: 'deepseek-chat',
@@ -41,11 +47,15 @@ export async function chatStream(messages: ChatMessage[]) {
  * 非流式聊天（一次性返回）
  */
 export async function chat(messages: ChatMessage[]) {
-  const res = await fetch(`${DEEPSEEK_API_BASE}/chat/completions`, {
+  if (!DEEPEEK_API_KEY) {
+    throw new Error('缺少 DEEPEEK_API_KEY 环境变量')
+  }
+
+  const res = await fetch(`${DEEPEEK_API_BASE}/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+      'Authorization': `Bearer ${DEEPEEK_API_KEY}`,
     },
     body: JSON.stringify({
       model: 'deepseek-chat',
