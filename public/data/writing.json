@@ -1,10 +1,41 @@
 [
-  { "id": 1, "date": "04-13", "topic": "言情-被出轨", "progress": "导语完成", "status": "构思中" },
-  { "id": 2, "date": "04-14", "topic": "悬疑脑洞", "progress": "大纲完成", "status": "构思中" },
-  { "id": 3, "date": "04-15", "topic": "世情爽文", "progress": "正文中", "status": "写作中" },
-  { "id": 4, "date": "04-16", "topic": "言情-小三", "progress": "导语修改", "status": "构思中" },
-  { "id": 5, "date": "04-17", "topic": "亲情虐", "progress": "大纲完成", "status": "构思中" },
-  { "id": 6, "date": "04-20", "topic": "言情-出轨方", "progress": "正文中", "status": "写作中" },
-  { "id": 7, "date": "04-21", "topic": "悬疑脑洞", "progress": "导语完成", "status": "构思中" },
-  { "id": 8, "date": "04-22", "topic": "世情爽文", "progress": "修改中", "status": "写作中" }
+  {
+    "date": "2026-3-9",
+    "id": "NO.1",
+    "title": "《阿娘将我卖到宫里给妹妹添嫁妆，可之后他们却哭着求我》",
+    "type": "亲情虐",
+    "platform": "掌玩",
+    "editor": "牧野",
+    "wordCount": 10000,
+    "pricePerK": "K50",
+    "expectedPaymentDate": "2026-4-20",
+    "paymentAmount": 500,
+    "status": "已到账"
+  },
+  {
+    "date": "2026-4-3",
+    "id": "NO.2",
+    "title": "《爸妈想给我百分之百的爱，但我要不起》",
+    "type": "亲情虐",
+    "platform": "九州",
+    "editor": "祁岁岁",
+    "wordCount": 10000,
+    "pricePerK": "K45",
+    "expectedPaymentDate": "2026-5-20",
+    "paymentAmount": 450,
+    "status": "已到账"
+  },
+  {
+    "date": "2026-4-13",
+    "id": "NO.3",
+    "title": "《儿子外室骑脸窝囊儿媳，活阎王的我杀疯了》",
+    "type": "世情",
+    "platform": "麦芽",
+    "editor": "星星",
+    "wordCount": 9950,
+    "pricePerK": "K40",
+    "expectedPaymentDate": "2026-5-15",
+    "paymentAmount": 398,
+    "status": "已到账"
+  }
 ]

@@ -4,36 +4,60 @@ import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { PenLine, BookOpen, CheckCircle, Sparkles, Trash2, Plus, Minus } from 'lucide-react'
+import { PenLine, BookOpen, CheckCircle, Sparkles, Trash2, Plus, Minus, DollarSign } from 'lucide-react'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 
-interface WritingRecord { id: number; date: string; topic: string; progress: string; status: string }
+interface WritingRecord {
+  date: string;
+  id: string;
+  title: string;
+  type: string;
+  platform: string;
+  editor: string;
+  wordCount: number;
+  pricePerK: string;
+  expectedPaymentDate: string;
+  paymentAmount: number;
+  status: string;
+}
+
+interface FullAttendanceRules {
+  platforms: {
+    [key: string]: {
+      rules: {
+        [key: string]: number;
+      };
+      editor: string;
+      note: string;
+    };
+  };
+}
 
 const statusMap: Record<string, string> = {
   '构思中': '#6ec6ff',
   '写作中': '#ffb86c',
   '已完成': '#7ee8a2',
   '已投稿': '#c44dff',
+  '已到账': '#4caf50',
 }
 
 export default function WritingPage() {
   const [records, setRecords] = useState<WritingRecord[]>([])
+  const [rules, setRules] = useState<FullAttendanceRules | null>(null)
   const [loading, setLoading] = useState(true)
-  const [editingId, setEditingId] = useState<number | null>(null)
-  const [editValue, setEditValue] = useState('')
-  const [showAdd, setShowAdd] = useState(false)
-  const [newDate, setNewDate] = useState('')
-  const [newTopic, setNewTopic] = useState('')
-  const [newProgress, setNewProgress] = useState('')
-  const [newStatus, setNewStatus] = useState('构思中')
 
   const loadData = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await fetch('/data/writing.json')
-      const data = await res.json()
-      setRecords(data)
+      const [writingRes, rulesRes] = await Promise.all([
+        fetch('/data/writing.json'),
+        fetch('/data/full-attendance-rules.json'),
+      ])
+      const writingData = await writingRes.json()
+      const rulesData = await rulesRes.json()
+      setRecords(writingData)
+      setRules(rulesData)
     } catch {
       toast.error('加载失败')
     } finally {
@@ -43,29 +67,25 @@ export default function WritingPage() {
 
   useEffect(() => { loadData() }, [loadData])
 
-  const handleSave = (id: number) => {
-    if (!editValue.trim()) { toast.error('内容不能为空'); return }
-    setRecords(prev => prev.map(r => r.id === id ? { ...r, progress: editValue } : r))
-    setEditingId(null)
-    toast.success('💖 已更新！')
-    localStorage.setItem('writing-records', JSON.stringify(records))
+  const stats = {
+    total: records.length,
+    writing: records.filter(r => r.status === '写作中').length,
+    completed: records.filter(r => r.status === '已完成').length,
+    submitted: records.filter(r => r.status === '已投稿').length,
+    paid: records.filter(r => r.status === '已到账').length,
+    totalSalary: records.filter(r => r.status === '已到账').reduce((sum, r) => sum + r.paymentAmount, 0),
   }
 
-  const handleAdd = () => {
-    if (!newDate || !newTopic) { toast.error('请填写日期和题材'); return }
-    const newRec: WritingRecord = {
-      id: records.length ? Math.max(...records.map(r => r.id)) + 1 : 1,
-      date: newDate, topic: newTopic, progress: newProgress, status: newStatus,
+  // 全勤奖进度
+  const currentMonth = new Date().getMonth() + 1
+  const currentYear = new Date().getFullYear()
+  const monthlyPlatformCount: Record<string, number> = {}
+  records.forEach(r => {
+    const date = new Date(r.date)
+    if (date.getMonth() + 1 === currentMonth && date.getFullYear() === currentYear && r.status === '已到账') {
+      monthlyPlatformCount[r.platform] = (monthlyPlatformCount[r.platform] || 0) + 1
     }
-    setRecords(prev => [...prev, newRec])
-    setNewDate(''); setNewTopic(''); setNewProgress(''); setShowAdd(false)
-    toast.success('🎉 添加成功！')
-  }
-
-  const handleDelete = (id: number) => {
-    setRecords(prev => prev.filter(r => r.id !== id))
-    toast.success('🗑️ 已删除')
-  }
+  })
 
   if (loading) {
     return (
@@ -80,7 +100,7 @@ export default function WritingPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4 pb-24">
+    <div className="max-w-4xl mx-auto p-4 pb-24">
       {/* 标题卡片 */}
       <div className="flex items-center gap-3 mb-5">
         <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shadow-md"
@@ -91,127 +111,85 @@ export default function WritingPage() {
           <h2 className="font-bold text-xl" style={{ color: '#4a3548' }}>网文创作</h2>
           <p className="text-xs" style={{ color: '#a890a0' }}>✨ 每一篇都是心血 ✨</p>
         </div>
-        <div className="ml-auto flex gap-2">
-          <Button size="sm" variant="outline" onClick={() => { localStorage.setItem('writing-records', JSON.stringify(records)); toast.success('💾 已保存') }}
-            className="rounded-2xl border-2" style={{ borderColor: '#ffe0e8', color: '#ff6b9d' }}>
-            💾 保存
-          </Button>
-          <Button size="sm" onClick={() => setShowAdd(!showAdd)}
-            className="text-white border-0 rounded-2xl"
-            style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)', boxShadow: '0 4px 16px rgba(255,107,157,0.3)' }}>
-            <Plus className="w-4 h-4 mr-1" /> 添加
-          </Button>
-        </div>
       </div>
 
       {/* 统计卡片 */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-5">
         {[
-          { label: '总作品', value: records.length, color: '#ff6b9d' },
-          { label: '写作中', value: records.filter(r => r.status === '写作中').length, color: '#ffb86c' },
-          { label: '已完成', value: records.filter(r => r.status === '已完成').length, color: '#7ee8a2' },
-          { label: '已投稿', value: records.filter(r => r.status === '已投稿').length, color: '#c44dff' },
+          { label: '总作品', value: stats.total, color: '#ff6b9d', icon: '📚' },
+          { label: '写作中', value: stats.writing, color: '#ffb86c', icon: '✍️' },
+          { label: '已完成', value: stats.completed, color: '#7ee8a2', icon: '✅' },
+          { label: '已投稿', value: stats.submitted, color: '#c44dff', icon: '📤' },
+          { label: '已到账', value: stats.paid, color: '#4caf50', icon: '💰' },
+          { label: '到账总工资', value: `¥${stats.totalSalary}`, color: '#2196f3', icon: '💵' },
         ].map((s, i) => (
           <div key={i} className="rounded-2xl p-3 shadow-sm border-2"
             style={{ background: '#fff', borderColor: '#ffe0e8' }}>
-            <p className="text-xs mb-1" style={{ color: '#a890a0' }}>{s.label}</p>
+            <p className="text-xs mb-1" style={{ color: '#a890a0' }}>{s.icon} {s.label}</p>
             <p className="font-bold text-lg" style={{ color: s.color }}>{s.value}</p>
           </div>
         ))}
       </div>
 
-      {/* 添加表单 */}
-      {showAdd && (
-        <div className="rounded-2xl p-4 mb-4 shadow-md border-2"
-          style={{ background: '#fff5f7', borderColor: '#ffd0e0' }}>
-          <div className="grid grid-cols-2 gap-2 mb-2">
-            <div>
-              <p className="text-xs mb-1" style={{ color: '#a890a0' }}>日期</p>
-              <Input value={newDate} onChange={e => setNewDate(e.target.value)}
-                placeholder="MM-DD" className="rounded-xl border-2" style={{ borderColor: '#ffe0e8', background: '#fff' }} />
-            </div>
-            <div>
-              <p className="text-xs mb-1" style={{ color: '#a890a0' }}>题材</p>
-              <Input value={newTopic} onChange={e => setNewTopic(e.target.value)}
-                placeholder="言情/悬疑/世情" className="rounded-xl border-2" style={{ borderColor: '#ffe0e8', background: '#fff' }} />
-            </div>
-          </div>
-          <div className="mb-2">
-            <p className="text-xs mb-1" style={{ color: '#a890a0' }}>进度</p>
-            <Input value={newProgress} onChange={e => setNewProgress(e.target.value)}
-              placeholder="第3章/修文中" className="rounded-xl border-2" style={{ borderColor: '#ffe0e8', background: '#fff' }} />
-          </div>
-          <div className="flex gap-2 items-center">
-            {['构思中','写作中','已完成','已投稿'].map(s => (
-              <button key={s} onClick={() => setNewStatus(s)}
-                className="px-3 py-1 text-xs rounded-full border-2 transition-all"
-                style={{
-                  borderColor: newStatus === s ? statusMap[s] : '#ffe0e8',
-                  background: newStatus === s ? statusMap[s] + '22' : 'transparent',
-                  color: newStatus === s ? statusMap[s] : '#a890a0',
-                }}>
-                {s}
-              </button>
-            ))}
-            <Button size="sm" onClick={handleAdd}
-              className="ml-auto text-white border-0 rounded-xl text-xs"
-              style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)' }}>
-              确认
-            </Button>
+      {/* 全勤奖进度 */}
+      {rules && (
+        <div className="mb-5">
+          <h3 className="font-bold text-lg mb-3" style={{ color: '#4a3548' }}>🏆 全勤奖进度（{currentMonth}月）</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {Object.entries(rules.platforms).map(([platform, rule]) => {
+              const count = monthlyPlatformCount[platform] || 0
+              const thresholds = Object.keys(rule.rules).map(Number).sort((a, b) => a - b)
+              const nextThreshold = thresholds.find(t => t > count) || thresholds[thresholds.length - 1]
+              const reward = rule.rules[nextThreshold] || 0
+              const progress = nextThreshold ? Math.min(100, (count / nextThreshold) * 100) : 100
+              return (
+                <div key={platform} className="rounded-2xl p-3 shadow-sm border-2"
+                  style={{ background: '#fff', borderColor: '#ffe0e8' }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>{platform}</span>
+                    <span className="text-xs" style={{ color: '#a890a0' }}>{count}篇 / {nextThreshold}篇</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div className="h-2.5 rounded-full" style={{ width: `${progress}%`, background: progress >= 100 ? '#4caf50' : 'linear-gradient(90deg,#ff6b9d,#c44dff)' }}></div>
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: '#a890a0' }}>奖金: ¥{reward} {rule.note && `(${rule.note})`}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
 
-      {/* 记录列表 */}
-      <div className="space-y-2">
-        {records.map((r, i) => {
-          const isEditing = editingId === r.id
-          return (
-            <div key={r.id} className="rounded-2xl p-3 shadow-sm border-2 transition-all duration-200 hover:shadow-md"
-              style={{ background: i % 2 === 0 ? '#fff' : '#fff8fa', borderColor: '#ffe0e8' }}>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-                  style={{ background: 'linear-gradient(135deg,#fff0f5,#f0e6ff)', color: '#ff6b9d' }}>
-                  {r.date.slice(0,2)}
+      {/* 作品列表 */}
+      <div className="space-y-3">
+        <h3 className="font-bold text-lg mb-3" style={{ color: '#4a3548' }}>📖 作品列表</h3>
+        {records.map((r, i) => (
+          <div key={r.id} className="rounded-2xl p-4 shadow-sm border-2 transition-all duration-200 hover:shadow-md"
+            style={{ background: i % 2 === 0 ? '#fff' : '#fff8fa', borderColor: '#ffe0e8' }}>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
+                style={{ background: 'linear-gradient(135deg,#fff0f5,#f0e6ff)', color: '#ff6b9d' }}>
+                {r.id}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>{r.title}</span>
+                  <Badge className="rounded-full text-xs border-0"
+                    style={{ background: statusMap[r.status] + '33', color: statusMap[r.status] }}>
+                    {r.status}
+                  </Badge>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>{r.topic}</span>
-                    <Badge className="rounded-full text-xs border-0"
-                      style={{ background: statusMap[r.status] + '33', color: statusMap[r.status] }}>
-                      {r.status}
-                    </Badge>
-                  </div>
-                  <p className="text-xs mt-0.5 truncate" style={{ color: '#a890a0' }}>{r.progress}</p>
-                </div>
-                <div className="flex items-center gap-1">
-                  {isEditing ? (
-                    <>
-                      <Input value={editValue} onChange={e => setEditValue(e.target.value)}
-                        className="w-32 h-8 text-xs rounded-xl border-2" style={{ borderColor: '#ff6b9d' }} />
-                      <Button size="sm" onClick={() => handleSave(r.id)}
-                        className="h-8 px-3 rounded-xl text-white border-0 text-xs"
-                        style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)' }}>保存</Button>
-                      <Button size="sm" variant="ghost" onClick={() => setEditingId(null)}
-                        className="h-8 px-2 rounded-xl text-xs" style={{ color: '#a890a0' }}>取消</Button>
-                    </>
-                  ) : (
-                    <>
-                      <button onClick={() => { setEditingId(r.id); setEditValue(r.progress) }}
-                        className="p-1 rounded-full hover:bg-pink-50 transition-colors" title="编辑">
-                        <Sparkles className="w-3.5 h-3.5" style={{ color: '#d4b0c0' }} />
-                      </button>
-                      <button onClick={() => handleDelete(r.id)}
-                        className="p-1 rounded-full hover:bg-red-50 transition-colors" title="删除">
-                        <Trash2 className="w-3.5 h-3.5 text-red-300" />
-                      </button>
-                    </>
-                  )}
-                </div>
+                <p className="text-xs mt-0.5" style={{ color: '#a890a0' }}>{r.type} · {r.platform} · {r.editor}</p>
               </div>
             </div>
-          )
-        })}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs" style={{ color: '#a890a0' }}>
+              <div>📅 {r.date}</div>
+              <div>📝 {r.wordCount}字</div>
+              <div>💰 {r.pricePerK} (¥{r.paymentAmount})</div>
+              <div>📅 预计到账: {r.expectedPaymentDate}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
