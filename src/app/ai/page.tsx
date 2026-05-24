@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { 
-  Newspaper, 
-  Bot, 
-  Sparkles, 
-  TrendingUp, 
-  Globe, 
-  Cpu, 
-  Code2, 
+import {
+  Newspaper,
+  Bot,
+  Sparkles,
+  TrendingUp,
+  Globe,
+  Cpu,
+  Code2,
   Eye,
   Calendar,
   Tag,
@@ -22,9 +22,7 @@ import {
   BookOpen,
   Zap,
   Send,
-  User,
   Trash2,
-  Heart
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -66,7 +64,7 @@ const categoryColors: Record<string, string> = {
 // ==================== 主组件 ====================
 export default function AIPage() {
   const [activeTab, setActiveTab] = useState<'news' | 'chat'>('news')
-  
+
   return (
     <div className="min-h-screen p-4 md:p-8" style={{ background: 'linear-gradient(135deg, #f5f0ff, #fff5f7)' }}>
       <div className="max-w-6xl mx-auto space-y-6">
@@ -82,7 +80,7 @@ export default function AIPage() {
               <p className="text-sm text-gray-500">每日更新 · 最前沿的 AI 资讯</p>
             </div>
           </div>
-          
+
           {/* 标签页切换 */}
           <div className="flex items-center gap-2 bg-white rounded-2xl p-1 shadow-md">
             <Button
@@ -211,7 +209,7 @@ function NewsTab() {
         if (done) break
         const chunk = decoder.decode(value, { stream: true })
         const lines = chunk.split('\n').filter(l => l.trim())
-        
+
         for (const line of lines) {
           if (!line.startsWith('data:')) continue
           const json = line.slice(5).trim()
@@ -289,8 +287,8 @@ function NewsTab() {
                       size="sm"
                       onClick={() => setSelectedCategory(cat)}
                       className={`rounded-lg text-xs ${
-                        selectedCategory === cat 
-                          ? 'bg-purple-600 hover:bg-purple-700' 
+                        selectedCategory === cat
+                          ? 'bg-purple-600 hover:bg-purple-700'
                           : 'border-purple-200 text-purple-600 hover:bg-purple-50'
                       }`}
                     >
@@ -310,8 +308,8 @@ function NewsTab() {
                       size="sm"
                       onClick={() => setSelectedDate(date)}
                       className={`rounded-lg text-xs ${
-                        selectedDate === date 
-                          ? 'bg-pink-600 hover:bg-pink-700' 
+                        selectedDate === date
+                          ? 'bg-pink-600 hover:bg-pink-700'
                           : 'border-pink-200 text-pink-600 hover:bg-pink-50'
                       }`}
                     >
@@ -402,7 +400,7 @@ function NewsTab() {
               <h2 className="text-lg font-semibold text-gray-700">{date}</h2>
               <Badge variant="secondary" className="text-xs">{items.length} 条</Badge>
             </div>
-            
+
             <div className="grid gap-4 md:grid-cols-2">
               {items.map(item => (
                 <Card key={item.id} className="border-0 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
@@ -416,22 +414,22 @@ function NewsTab() {
                       </Badge>
                       <span className="text-xs text-gray-400">{item.source}</span>
                     </div>
-                    
+
                     <h3 className="font-semibold text-gray-800 mb-2 leading-snug">
-                      <a 
-                        href={item.url} 
-                        target="_blank" 
+                      <a
+                        href={item.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-purple-600 transition-colors"
                       >
                         {item.title}
                       </a>
                     </h3>
-                    
+
                     <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
                       {item.summary}
                     </p>
-                    
+
                     <div className="flex items-center justify-between">
                       <div className="flex flex-wrap gap-1">
                         {item.tags.slice(0, 3).map(tag => (
@@ -440,9 +438,9 @@ function NewsTab() {
                           </Badge>
                         ))}
                       </div>
-                      <a 
-                        href={item.url} 
-                        target="_blank" 
+                      <a
+                        href={item.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-purple-600 hover:text-purple-700 flex items-center gap-1"
                       >
