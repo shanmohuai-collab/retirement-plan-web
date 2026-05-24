@@ -4,7 +4,7 @@
  */
 
 const DEEPEEK_API_BASE = 'https://api.deepseek.com'
-const DEEPEEK_API_KEY = process.env.DEEPSEEK_API_KEY!
+const DEEPEEK_API_KEY = process.env.DEEPEEK_API_KEY!
 
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant'
