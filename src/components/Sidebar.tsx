@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  Scale, BookOpen, TrendingUp, Bot, Menu, X, Home, LogOut
+  Scale, BookOpen, Newspaper, Menu, X, Home, LogOut
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
@@ -12,8 +12,7 @@ import { toast } from 'sonner'
 const navItems = [
   { href: '/weight',   label: '体重板块', icon: Scale },
   { href: '/writing',  label: '网文板块', icon: BookOpen },
-  { href: '/investment', label: '投资板块', icon: TrendingUp },
-  { href: '/ai',       label: 'AI 助理',  icon: Bot },
+  { href: '/ai',       label: 'AI 前沿',  icon: Newspaper },
 ]
 
 export default function Sidebar() {

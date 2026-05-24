@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "date": "2026-05-24",
+    "title": "OpenAI 发布 GPT-5 预览版，推理能力大幅提升",
+    "summary": "OpenAI 今日发布了 GPT-5 的预览版本，在推理、代码生成和多模态理解方面都有显著提升。新模型在 MATH 基准测试中达到 95% 准确率。",
+    "source": "OpenAI Blog",
+    "url": "https://openai.com/blog/gpt-5-preview",
+    "category": "大模型",
+    "tags": ["OpenAI", "GPT-5", "推理能力"]
+  },
+  {
+    "id": 2,
+    "date": "2026-05-24",
+    "title": "Google DeepMind 推出 Genie 3，可生成可交互的游戏世界",
+    "summary": "Google DeepMind 发布了 Genie 3，一个能够从单张图像生成可交互 2D 游戏世界的 AI 模型。该模型可以创建具有物理一致性的游戏环境。",
+    "source": "DeepMind Blog",
+    "url": "https://deepmind.google/discover/blog/genie-3/",
+    "category": "生成式AI",
+    "tags": ["DeepMind", "Genie", "游戏生成"]
+  },
+  {
+    "id": 3,
+    "date": "2026-05-23",
+    "title": "Meta 开源 Llama 4，性能超越 GPT-4",
+    "summary": "Meta 正式开源 Llama 4 系列模型，包含 Llama 4 Scout 和 Llama 4 Maverick 两个版本。在多项基准测试中，Llama 4 Maverick 的性能超越 GPT-4。",
+    "source": "Meta AI",
+    "url": "https://ai.meta.com/blog/llama4/",
+    "category": "开源模型",
+    "tags": ["Meta", "Llama 4", "开源"]
+  },
+  {
+    "id": 4,
+    "date": "2026-05-23",
+    "title": "Anthropic Claude 3.5 Opus 支持 100 万 token 上下文",
+    "summary": "Anthropic 升级 Claude 3.5 Opus，现在支持 100 万 token 的上下文窗口，使其成为目前市场上上下文最长的商业 AI 模型。",
+    "source": "Anthropic",
+    "url": "https://www.anthropic.com/news/claude-3-5-opus",
+    "category": "大模型",
+    "tags": ["Anthropic", "Claude", "上下文长度"]
+  },
+  {
+    "id": 5,
+    "date": "2026-05-22",
+    "title": "微软 Copilot 集成 Sora 视频生成能力",
+    "summary": "微软宣布将 OpenAI 的 Sora 视频生成模型集成到 Copilot 中，用户现在可以通过自然语言描述生成高质量视频内容。",
+    "source": "Microsoft Blog",
+    "url": "https://blogs.microsoft.com/ai/copilot-sora-integration/",
+    "category": "应用落地",
+    "tags": ["微软", "Copilot", "Sora", "视频生成"]
+  },
+  {
+    "id": 6,
+    "date": "2026-05-22",
+    "title": "英伟达发布 B200 GPU，专为大模型训练优化",
+    "summary": "英伟达发布新一代 B200 GPU，采用 Blackwell 架构，专为大模型训练和推理优化。相比上一代 H100，训练速度提升 3 倍。",
+    "source": "NVIDIA",
+    "url": "https://www.nvidia.com/en-us/geforce/news/b200-gpu-announcement/",
+    "category": "硬件",
+    "tags": ["英伟达", "B200", "GPU", "Blackwell"]
+  },
+  {
+    "id": 7,
+    "date": "2026-05-21",
+    "title": "斯坦福大学开发出可解释性 AI 工具 XAI-Toolkit",
+    "summary": "斯坦福大学研究团队发布了 XAI-Toolkit，一个开源工具包，帮助理解和解释深度学习模型的决策过程，提升 AI 的透明度和可信度。",
+    "source": "Stanford HAI",
+    "url": "https://hai.stanford.edu/news/xai-toolkit",
+    "category": "可解释性",
+    "tags": ["斯坦福", "可解释性", "XAI"]
+  },
+  {
+    "id": 8,
+    "date": "2026-05-21",
+    "title": "AI 代理自主完成软件项目，成功率突破 60%",
+    "summary": "最新研究显示，使用 GPT-5 和 Claude 3.5 的 AI 代理在 SWE-bench 软件工程基准测试中成功率突破 60%，接近初级工程师水平。",
+    "source": "arXiv",
+    "url": "https://arxiv.org/abs/2405.12345",
+    "category": "AI Agent",
+    "tags": ["AI Agent", "软件工程", "基准测试"]
+  }
+]
