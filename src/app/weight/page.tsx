@@ -1,196 +1,223 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
+import { Trash2, Plus, TrendingUp, TrendingDown, Minus, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 
+interface Record { id: number; date: string; weight: number; change: number; note: string }
+
 export default function WeightPage() {
-  const [headers, setHeaders] = useState<string[]>([])
-  const [rows, setRows] = useState<any[][]>([])
+  const [records, setRecords] = useState<Record[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string>('')
-  
-  // 编辑状态
-  const [editingCell, setEditingCell] = useState<{ row: number; col: number } | null>(null)
-  const [editValue, setEditValue] = useState<string>('')
-  const [saving, setSaving] = useState(false)
-  const [summary, setSummary] = useState<any>(null)
+  const [editingId, setEditingId] = useState<number | null>(null)
+  const [editValue, setEditValue] = useState('')
+  const [showAdd, setShowAdd] = useState(false)
+  const [newDate, setNewDate] = useState('')
+  const [newWeight, setNewWeight] = useState('')
 
-  // 加载数据
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  async function fetchData() {
+  const loadData = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const res = await fetch('/data/weight.json')
-      if (!res.ok) throw new Error('加载数据失败')
-      const json = await res.json()
-      
-      setHeaders(json.headers || [])
-      setRows(json.rows || [])
-      setSummary(json.summary || null)
-    } catch (err: any) {
-      setError(err.message)
-      toast.error(err.message)
+      const data = await res.json()
+      setRecords(data)
+    } catch {
+      toast.error('加载失败')
     } finally {
       setLoading(false)
     }
+  }, [])
+
+  useEffect(() => { loadData() }, [loadData])
+
+  const handleEdit = (id: number, currentWeight: number) => {
+    setEditingId(id)
+    setEditValue(String(currentWeight))
   }
 
-  // 开始编辑单元格
-  function startEdit(rowIndex: number, colIndex: number, currentValue: any) {
-    setEditingCell({ row: rowIndex, col: colIndex })
-    setEditValue(String(currentValue || ''))
-  }
-
-  // 取消编辑
-  function cancelEdit() {
-    setEditingCell(null)
-    setEditValue('')
-  }
-
-  // 保存编辑（保存到 localStorage，并提示用户）
-  async function saveEdit() {
-    if (!editingCell) return
-    
-    try {
-      setSaving(true)
-      
-      // 保存到 localStorage
-      const storageKey = 'weight_edits'
-      const edits = JSON.parse(localStorage.getItem(storageKey) || '{}')
-      const key = `${editingCell.row}_${editingCell.col}`
-      edits[key] = editValue
-      localStorage.setItem(storageKey, JSON.stringify(edits))
-      
-      // 更新本地数据
-      setRows(prev => {
-        const newRows = [...prev]
-        newRows[editingCell.row] = [...newRows[editingCell.row]]
-        newRows[editingCell.row][editingCell.col] = editValue
-        return newRows
-      })
-      
-      toast.success('已保存到本地（刷新后失效）。真实数据请在金山文档 Excel 中修改。')
-      cancelEdit()
-    } catch (err: any) {
-      toast.error(`保存失败: ${err.message}`)
-    } finally {
-      setSaving(false)
+  const handleSave = (id: number) => {
+    const val = parseFloat(editValue)
+    if (isNaN(val) || val <= 0) {
+      toast.error('请输入有效体重')
+      return
     }
+    setRecords(prev => prev.map(r => {
+      if (r.id !== id) return r
+      const prevW = records.find(rr => rr.id === id - 1)?.weight ?? r.weight
+      return { ...r, weight: val, change: +(val - prevW).toFixed(1) }
+    }))
+    setEditingId(null)
+    toast.success('💖 已更新！')
+    saveToLocal()
   }
 
-  // 处理回车键
-  function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.key === 'Enter') {
-      saveEdit()
-    } else if (e.key === 'Escape') {
-      cancelEdit()
+  const saveToLocal = () => {
+    localStorage.setItem('weight-records', JSON.stringify(records))
+    toast.success('💾 已保存到本地')
+  }
+
+  const handleAdd = () => {
+    if (!newDate || !newWeight) {
+      toast.error('请填写日期和体重')
+      return
     }
+    const w = parseFloat(newWeight)
+    const prevW = records[records.length - 1]?.weight ?? w
+    const newRec: Record = {
+      id: records.length ? Math.max(...records.map(r => r.id)) + 1 : 1,
+      date: newDate,
+      weight: w,
+      change: +(w - prevW).toFixed(1),
+      note: '',
+    }
+    setRecords(prev => [...prev, newRec])
+    setNewDate('')
+    setNewWeight('')
+    setShowAdd(false)
+    toast.success('🎉 添加成功！')
+  }
+
+  const handleDelete = (id: number) => {
+    setRecords(prev => prev.filter(r => r.id !== id))
+    toast.success('🗑️ 已删除')
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center h-64">加载中...</div>
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl animate-bounce"
+            style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)' }}>💖</div>
+          <p style={{ color: '#a890a0' }}>加载中呀...</p>
+        </div>
+      </div>
+    )
   }
 
+  const minW = Math.min(...records.map(r => r.weight))
+  const maxW = Math.max(...records.map(r => r.weight))
+
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">体重板块</h1>
-        <Badge variant="outline">数据来源：金山文档（每日自动同步）</Badge>
+    <div className="max-w-3xl mx-auto p-4 pb-24">
+      {/* 标题卡片 */}
+      <div className="flex items-center gap-3 mb-5">
+        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shadow-md"
+          style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)', boxShadow: '0 4px 20px rgba(255,107,157,0.3)' }}>
+          📊
+        </div>
+        <div>
+          <h2 className="font-bold text-xl" style={{ color: '#4a3548' }}>体重记录</h2>
+          <p className="text-xs" style={{ color: '#a890a0' }}>✨ 记录每一天的小变化 ✨</p>
+        </div>
+        <div className="ml-auto flex gap-2">
+          <Button size="sm" variant="outline" onClick={saveToLocal}
+            className="rounded-2xl border-2" style={{ borderColor: '#ffe0e8', color: '#ff6b9d' }}>
+            💾 保存
+          </Button>
+          <Button size="sm" onClick={() => setShowAdd(!showAdd)}
+            className="text-white border-0 rounded-2xl"
+            style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)', boxShadow: '0 4px 16px rgba(255,107,157,0.3)' }}>
+            <Plus className="w-4 h-4 mr-1" /> 添加
+          </Button>
+        </div>
       </div>
 
-      {error && (
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="pt-6 text-red-600">{error}</CardContent>
-        </Card>
-      )}
-
       {/* 统计卡片 */}
-      {summary && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">起始体重</CardTitle></CardHeader>
-            <CardContent><p className="text-2xl font-bold">{summary.startWeight} 斤</p></CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">当前体重</CardTitle></CardHeader>
-            <CardContent><p className="text-2xl font-bold">{summary.currentWeight} 斤</p></CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">已减重量</CardTitle></CardHeader>
-            <CardContent><p className="text-2xl font-bold text-green-600">-{summary.totalLoss} 斤</p></CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">百日进度</CardTitle></CardHeader>
-            <CardContent><p className="text-2xl font-bold">{summary.progress}</p></CardContent>
-          </Card>
+      <div className="grid grid-cols-3 gap-3 mb-5">
+        {[
+          { label: '当前体重', value: (records[records.length-1]?.weight ?? '--') + ' 斤', color: '#ff6b9d' },
+          { label: '最低体重', value: minW + ' 斤', color: '#6ec6ff' },
+          { label: '最高体重', value: maxW + ' 斤', color: '#c44dff' },
+        ].map((s, i) => (
+          <div key={i} className="rounded-2xl p-3 shadow-sm border-2"
+            style={{ background: '#fff', borderColor: '#ffe0e8' }}>
+            <p className="text-xs mb-1" style={{ color: '#a890a0' }}>{s.label}</p>
+            <p className="font-bold text-lg" style={{ color: s.color }}>{s.value}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* 添加表单 */}
+      {showAdd && (
+        <div className="rounded-2xl p-4 mb-4 shadow-md border-2"
+          style={{ background: '#fff5f7', borderColor: '#ffd0e0' }}>
+          <div className="flex gap-2 items-end">
+            <div className="flex-1">
+              <p className="text-xs mb-1" style={{ color: '#a890a0' }}>日期</p>
+              <Input value={newDate} onChange={e => setNewDate(e.target.value)}
+                placeholder="MM-DD" className="rounded-xl border-2" style={{ borderColor: '#ffe0e8', background: '#fff' }} />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs mb-1" style={{ color: '#a890a0' }}>体重（斤）</p>
+              <Input value={newWeight} onChange={e => setNewWeight(e.target.value)}
+                placeholder="52.5" type="number" className="rounded-xl border-2" style={{ borderColor: '#ffe0e8', background: '#fff' }} />
+            </div>
+            <Button size="sm" onClick={handleAdd}
+              className="rounded-xl text-white border-0"
+              style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)' }}>
+              确认
+            </Button>
+          </div>
         </div>
       )}
 
-      {/* 数据表格 */}
-      <Card>
-        <CardHeader>
-          <CardTitle>数据列表（点击单元格编辑，仅本地保存）</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                {headers.map((header, index) => (
-                  <TableHead key={index}>{header || `列${index + 1}`}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {rows.map((row, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  {headers.map((header, colIndex) => {
-                    const isEditing = editingCell?.row === rowIndex && editingCell?.col === colIndex
-                    const cellValue = row[colIndex]
-
-                    return (
-                      <TableCell key={colIndex}>
-                        {isEditing ? (
-                          <div className="flex gap-1">
-                            <Input
-                              value={editValue}
-                              onChange={(e) => setEditValue(e.target.value)}
-                              onKeyDown={handleKeyDown}
-                              disabled={saving}
-                              className="h-8"
-                              autoFocus
-                            />
-                            <Button size="sm" onClick={saveEdit} disabled={saving} className="h-8 px-2">
-                              保存
-                            </Button>
-                            <Button size="sm" variant="ghost" onClick={cancelEdit} className="h-8 px-2">
-                              取消
-                            </Button>
-                          </div>
-                        ) : (
-                          <div
-                            onClick={() => startEdit(rowIndex, colIndex, cellValue)}
-                            className="cursor-pointer hover:bg-gray-100 min-h-[32px] py-1 px-2 rounded"
-                          >
-                            {cellValue || '-'}
-                          </div>
-                        )}
-                      </TableCell>
-                    )
-                  })}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+      {/* 记录列表 */}
+      <div className="space-y-2">
+        {records.map((r, i) => {
+          const prev = i > 0 ? records[i-1].weight : r.weight
+          const diff = +(r.weight - prev).toFixed(1)
+          const isEditing = editingId === r.id
+          return (
+            <div key={r.id} className="rounded-2xl p-3 shadow-sm border-2 transition-all duration-200 hover:shadow-md"
+              style={{ background: i % 2 === 0 ? '#fff' : '#fff8fa', borderColor: '#ffe0e8' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
+                  style={{ background: 'linear-gradient(135deg,#fff0f5,#f0e6ff)', color: '#ff6b9d' }}>
+                  {r.date.slice(0,2)}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-sm" style={{ color: '#4a3548' }}>{r.date}</span>
+                    {diff > 0 && <Badge className="rounded-full bg-red-50 text-red-500 border-0 text-xs">+{diff}</Badge>}
+                    {diff < 0 && <Badge className="rounded-full bg-green-50 text-green-500 border-0 text-xs">{diff}</Badge>}
+                    {diff === 0 && <Badge className="rounded-full bg-gray-50 text-gray-400 border-0 text-xs">0</Badge>}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1">
+                  {isEditing ? (
+                    <>
+                      <Input value={editValue} onChange={e => setEditValue(e.target.value)}
+                        className="w-20 h-8 text-sm rounded-xl border-2" style={{ borderColor: '#ff6b9d' }} />
+                      <Button size="sm" onClick={() => handleSave(r.id)}
+                        className="h-8 px-3 rounded-xl text-white border-0 text-xs"
+                        style={{ background: 'linear-gradient(135deg,#ff6b9d,#c44dff)' }}>保存</Button>
+                      <Button size="sm" variant="ghost" onClick={() => setEditingId(null)}
+                        className="h-8 px-2 rounded-xl text-xs" style={{ color: '#a890a0' }}>取消</Button>
+                    </>
+                  ) : (
+                    <>
+                      <span className="font-bold text-lg" style={{ color: '#ff6b9d' }}>{r.weight}</span>
+                      <span className="text-xs" style={{ color: '#d4b0c0' }}>斤</span>
+                      <button onClick={() => handleEdit(r.id, r.weight)}
+                        className="ml-1 p-1 rounded-full hover:bg-pink-50 transition-colors" title="编辑">
+                        <Sparkles className="w-3.5 h-3.5" style={{ color: '#d4b0c0' }} />
+                      </button>
+                      <button onClick={() => handleDelete(r.id)}
+                        className="p-1 rounded-full hover:bg-red-50 transition-colors" title="删除">
+                        <Trash2 className="w-3.5 h-3.5 text-red-300" />
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

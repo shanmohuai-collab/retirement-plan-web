@@ -2,24 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  :root {
+    --cute-pink: #ff6b9d;
+    --cute-purple: #c44dff;
+    --cute-blue: #6ec6ff;
+    --cute-yellow: #ffe066;
+    --cute-green: #7ee8a2;
+    --cute-bg: #fff5f7;
+    --cute-card: #ffffff;
+    --cute-text: #4a3548;
+    --cute-muted: #a890a0;
   }
+
+  * {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif !important;
+  }
+
+  body {
+    background: var(--cute-bg);
+    color: var(--cute-text);
+    min-height: 100vh;
+  }
+}
+
+/* Q版圆角全局 */
+@layer components {
+  .cute-shadow {
+    box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+  }
+  .cute-shadow:hover {
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.25);
+  }
+  .cute-card {
+    background: var(--cute-card);
+    border-radius: 24px;
+    border: 2px solid #ffe0e8;
+    box-shadow: 0 4px 20px rgba(255, 107, 157, 0.12);
+  }
+  .cute-btn {
+    border-radius: 999px !important;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .cute-btn:hover {
+    transform: scale(1.04);
+    filter: brightness(1.08);
+  }
+  .cute-btn:active {
+    transform: scale(0.97);
+  }
+  .cute-input {
+    border-radius: 999px !important;
+    border: 2px solid #ffe0e8 !important;
+    background: #fff5f7 !important;
+    transition: border-color 0.2s;
+  }
+  .cute-input:focus {
+    border-color: var(--cute-pink) !important;
+    box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.15) !important;
+    outline: none !important;
+  }
+}
+
+/* 滚动条Q版 */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffb6d5, #c44dff);
+  border-radius: 999px;
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: rgba(255, 107, 157, 0.25);
+  color: var(--cute-text);
 }

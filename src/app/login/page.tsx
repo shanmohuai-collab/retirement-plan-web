@@ -1,31 +1,27 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Lock, Eye, EyeOff } from 'lucide-react'
+import { Lock, Eye, EyeOff, Sparkles, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import Image from 'next/image'
 
 export default function LoginPage() {
   const router = useRouter()
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [isClient, setIsClient] = useState(false)
+  const [shake, setShake] = useState(false)
 
-  useEffect(() => {
-    setIsClient(true)
-    if (typeof document !== 'undefined' && document.cookie.includes('site-auth=1')) {
-      router.push('/weight')
+  const handleLogin = async () => {
+    if (!password) {
+      setShake(true)
+      setTimeout(() => setShake(false), 500)
+      return
     }
-  }, [router])
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!password.trim()) return
-
     setLoading(true)
     try {
       const res = await fetch('/api/auth/login', {
@@ -33,94 +29,102 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
       })
-
-      const json = await res.json()
-
-      if (json.success) {
-        toast.success('登录成功！')
+      const data = await res.json()
+      if (data.success) {
+        toast.success('🎉 欢迎回来！')
         router.push('/weight')
       } else {
-        toast.error('密码错误，请重试')
-        setPassword('')
+        setShake(true)
+        setTimeout(() => setShake(false), 500)
+        toast.error('😅 密码错啦，再想想～')
       }
-    } catch (err: any) {
-      toast.error('登录失败，请重试')
+    } catch {
+      toast.error('网络出错啦')
     } finally {
       setLoading(false)
     }
   }
 
-  if (!isClient) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        <div className="w-8 h-8 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-4">
-      {/* 背景装饰 */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
-      </div>
+    <div className="min-h-screen flex items-center justify-center p-4"
+      style={{ background: 'linear-gradient(135deg, #fff0f5 0%, #f0e6ff 50%, #e6f7ff 100%)' }}>
+      {/* 背景装饰圆 */}
+      <div className="fixed top-10 left-10 w-32 h-32 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #ff6b9d, transparent)' }} />
+      <div className="fixed bottom-10 right-10 w-40 h-40 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #c44dff, transparent)' }} />
+      <div className="fixed top-1/3 right-20 w-20 h-20 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #6ec6ff, transparent)' }} />
 
-      <Card className="w-full max-w-md border-0 shadow-2xl bg-white/95 backdrop-blur">
+      <Card className={`w-full max-w-sm border-0 shadow-2xl ${shake ? 'animate-shake' : ''}`}
+        style={{ borderRadius: '28px', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(20px)' }}>
         <CardContent className="p-8">
-          {/* Logo */}
-          <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-600/25">
-              <Lock className="w-8 h-8 text-white" />
+          {/* 头像区 */}
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-20 h-20 rounded-full flex items-center justify-center text-5xl mb-3 shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #ff6b9d, #c44dff)', boxShadow: '0 8px 32px rgba(255,107,157,0.3)' }}>
+              🏠
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">退休计划管理</h1>
-            <p className="text-gray-500 mt-1">AI 助理 · 数据追踪</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#4a3548' }}>退休计划小助手</h1>
+            <p className="text-sm mt-1" style={{ color: '#a890a0' }}>✨ 记录每一天的小进步 ✨</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">访问密码</label>
-              <div className="relative">
-                <Input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  placeholder="请输入访问密码"
-                  disabled={loading}
-                  className="h-12 rounded-xl border-gray-200 bg-gray-50/50 pr-12 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
-                  autoFocus
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={loading || !password.trim()}
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 transition-all"
+          {/* 输入框 */}
+          <div className="relative mb-5">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 z-10" style={{ color: '#ff6b9d' }} />
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="请输入密码 🔑"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLogin()}
+              className="pl-12 pr-12 h-12 text-base border-2 focus:border-pink-300"
+              style={{ borderRadius: '999px', borderColor: '#ffe0e8', background: '#fff5f7' }}
+            />
+            <button
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-pink-50"
+              style={{ color: '#ff6b9d' }}
             >
-              {loading ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  验证中...
-                </div>
-              ) : (
-                '进入工作台'
-              )}
-            </Button>
-          </form>
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
+          </div>
 
-          <p className="text-xs text-gray-400 text-center mt-6">
-            退休计划 · 退休不退休
-          </p>
+          {/* 登录按钮 */}
+          <Button
+            onClick={handleLogin}
+            disabled={loading}
+            className="w-full h-12 text-base font-bold text-white border-0 shadow-lg hover:shadow-xl"
+            style={{
+              borderRadius: '999px',
+              background: loading ? '#d4a0b0' : 'linear-gradient(135deg, #ff6b9d, #c44dff)',
+              boxShadow: '0 6px 24px rgba(255,107,157,0.35)',
+            }}
+          >
+            {loading ? (
+              <span className="flex items-center gap-2">登录中<Loader2 className="w-5 h-5 animate-spin" /></span>
+            ) : (
+              <span className="flex items-center gap-2"><Sparkles className="w-5 h-5" /> 进入我的小天地</span>
+            )}
+          </Button>
+
+          {/* 底部装饰 */}
+          <div className="flex justify-center gap-1 mt-5">
+            {['💖', '🌸', '🎀', '🌸', '💖'].map((e, i) => (
+              <span key={i} className="text-xs opacity-60">{e}</span>
+            ))}
+          </div>
         </CardContent>
       </Card>
+
+      {/* shake动画 */}
+      <style>{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-8px); }
+          40% { transform: translateX(8px); }
+          60% { transform: translateX(-6px); }
+          80% { transform: translateX(6px); }
+        }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
+      `}</style>
     </div>
   )
 }
