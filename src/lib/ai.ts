@@ -13,6 +13,7 @@ export interface ChatMessage {
 
 /**
  * 流式聊天（Server-Sent Events）
+ * 返回原始 Response（SSE stream）
  */
 export async function chatStream(messages: ChatMessage[]) {
   const res = await fetch(`${DEEPEEK_API_BASE}/chat/completions`, {
@@ -29,7 +30,8 @@ export async function chatStream(messages: ChatMessage[]) {
   })
 
   if (!res.ok) {
-    throw new Error(`DeepSeek API error: ${res.status} ${await res.text()}`)
+    const text = await res.text()
+    throw new Error(`DeepSeek API 错误: ${res.status} ${text}`)
   }
 
   return res
@@ -53,7 +55,8 @@ export async function chat(messages: ChatMessage[]) {
   })
 
   if (!res.ok) {
-    throw new Error(`DeepSeek API error: ${res.status} ${await res.text()}`)
+    const text = await res.text()
+    throw new Error(`DeepSeek API 错误: ${res.status} ${text}`)
   }
 
   return res.json()
