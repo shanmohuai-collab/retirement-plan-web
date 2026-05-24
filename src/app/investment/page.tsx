@@ -8,182 +8,199 @@ import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 
-interface InvestmentRecord {
-  [key: string]: string
-}
-
 export default function InvestmentPage() {
-  const [data, setData] = useState<InvestmentRecord[]>([])
+  const [headers, setHeaders] = useState<string[]>([])
+  const [rows, setRows] = useState<any[][]>([])
   const [loading, setLoading] = useState(true)
-  const [editingCell, setEditingCell] = useState<{ row: number; col: string } | null>(null)
-  const [editValue, setEditValue] = useState('')
+  const [error, setError] = useState<string>('')
+  const [editingCell, setEditingCell] = useState<{ row: number; col: number } | null>(null)
+  const [editValue, setEditValue] = useState<string>('')
+  const [saving, setSaving] = useState(false)
+  const [summary, setSummary] = useState<any>(null)
 
   useEffect(() => {
     fetchData()
   }, [])
 
-  const fetchData = async () => {
-    setLoading(true)
+  async function fetchData() {
     try {
-        const res = await fetch('/api/kdocs/read?sheet=投资板块')
-        const json = await res.json()
-        if (json.success) {
-          setData(json.data)
-        } else {
-          toast.error('读取失败：' + json.error)
-        }
-      } catch (err: any) {
-        toast.error('网络错误：' + err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-  const handleEdit = (rowIndex: number, colKey: string, currentValue: string) => {
-    setEditingCell({ row: rowIndex, col: colKey })
-    setEditValue(currentValue || '')
-  }
-
-  const handleSave = async (rowIndex: number, colKey: string) => {
-    try {
-      const res = await fetch('/api/kdocs/write', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sheet: '投资板块',
-          row: rowIndex,
-          col: colKey,
-          value: editValue
-        })
-      })
+      setLoading(true)
+      const res = await fetch('/data/investment.json')
+      if (!res.ok) throw new Error('加载数据失败')
       const json = await res.json()
-      if (json.success) {
-        toast.success('保存成功')
-        setData(prev => {
-          const newData = [...prev]
-          newData[rowIndex] = { ...newData[rowIndex], [colKey]: editValue }
-          return newData
-        })
-      } else {
-        toast.error('保存失败：' + json.error)
-      }
+      setHeaders(json.headers || [])
+      setRows(json.rows || [])
+      setSummary(json.summary || null)
     } catch (err: any) {
-      toast.error('网络错误：' + err.message)
+      setError(err.message)
+      toast.error(err.message)
     } finally {
-      setEditingCell(null)
-      setEditValue('')
+      setLoading(false)
     }
   }
 
-  const handleCancel = () => {
+  function startEdit(rowIndex: number, colIndex: number, currentValue: any) {
+    setEditingCell({ row: rowIndex, col: colIndex })
+    setEditValue(String(currentValue || ''))
+  }
+
+  function cancelEdit() {
     setEditingCell(null)
     setEditValue('')
   }
 
-  const getPredictionBadge = (prediction: string) => {
-    if (prediction.includes('涨')) return 'bg-red-100 text-red-800'
-    if (prediction.includes('跌')) return 'bg-green-100 text-green-800'
-    return 'bg-gray-100 text-gray-800'
+  async function saveEdit() {
+    if (!editingCell) return
+    try {
+      setSaving(true)
+      const storageKey = 'investment_edits'
+      const edits = JSON.parse(localStorage.getItem(storageKey) || '{}')
+      const key = `${editingCell.row}_${editingCell.col}`
+      edits[key] = editValue
+      localStorage.setItem(storageKey, JSON.stringify(edits))
+      
+      setRows(prev => {
+        const newRows = [...prev]
+        newRows[editingCell.row] = [...newRows[editingCell.row]]
+        newRows[editingCell.row][editingCell.col] = editValue
+        return newRows
+      })
+      
+      toast.success('已保存到本地（刷新后失效）。真实数据请在金山文档 Excel 中修改。')
+      cancelEdit()
+    } catch (err: any) {
+      toast.error(`保存失败: ${err.message}`)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter') saveEdit()
+    else if (e.key === 'Escape') cancelEdit()
+  }
+
+  // 涨跌样式
+  function getChangeClass(value: any): string {
+    if (!value) return ''
+    const str = String(value)
+    if (str.includes('涨') || str.includes('+') || str.includes('上升')) return 'text-red-600 font-semibold'
+    if (str.includes('跌') || str.includes('-') || str.includes('下降')) return 'text-green-600 font-semibold'
+    return ''
   }
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-lg">加载中...</div>
-      </div>
-    )
+    return <div className="flex items-center justify-center h-64">加载中...</div>
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">💰 投资板块</h1>
-        <Button onClick={fetchData} variant="outline">刷新数据</Button>
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">投资板块</h1>
+        <Badge variant="outline">数据来源：金山文档（每日自动同步）</Badge>
       </div>
 
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6 text-red-600">{error}</CardContent>
+        </Card>
+      )}
+
+      {/* 统计卡片 */}
+      {summary && (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">总预测数</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.totalPredictions || 0}</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">准确预测</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold text-green-600">{summary.correctPredictions || 0}</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">准确率</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.accuracy || '-'}</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">近期趋势</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.recentTrend || '-'}</p></CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* 数据表格 */}
       <Card>
         <CardHeader>
-          <CardTitle>黄金涨跌预测与复盘</CardTitle>
+          <CardTitle>黄金涨跌预测记录（点击单元格编辑，仅本地保存）</CardTitle>
         </CardHeader>
         <CardContent>
-          {data.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              暂无数据
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    {Object.keys(data[0]).map(key => (
-                      <TableHead key={key} className="whitespace-nowrap">{key}</TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {data.map((row, rowIndex) => (
-                    <TableRow key={rowIndex}>
-                      {Object.entries(row).map(([key, value]) => (
-                        <TableCell key={key} className="whitespace-nowrap">
-                          {editingCell?.row === rowIndex && editingCell?.col === key ? (
-                            <div className="flex items-center gap-1">
-                              <Input
-                                value={editValue}
-                                onChange={(e) => setEditValue(e.target.value)}
-                                className="h-8 w-32"
-                                autoFocus
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter') handleSave(rowIndex, key)
-                                  if (e.key === 'Escape') handleCancel()
-                                }}
-                              />
-                              <Button size="sm" onClick={() => handleSave(rowIndex, key)} className="h-8 px-2">✓</Button>
-                              <Button size="sm" variant="ghost" onClick={handleCancel} className="h-8 px-2">✕</Button>
-                            </div>
-                          ) : (
-                            <div
-                              className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded"
-                              onClick={() => handleEdit(rowIndex, key, String(value))}
-                            >
-                              {key.includes('预测') && typeof value === 'string' ? (
-                                <Badge className={getPredictionBadge(value)}>{value}</Badge>
-                              ) : (
-                                <span className="text-sm">{String(value)}</span>
-                              )}
-                            </div>
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          )}
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {headers.map((header, index) => (
+                  <TableHead key={index}>{header || `列${index + 1}`}</TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {rows.map((row, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  {headers.map((header, colIndex) => {
+                    const isEditing = editingCell?.row === rowIndex && editingCell?.col === colIndex
+                    const cellValue = row[colIndex]
+
+                    return (
+                      <TableCell key={colIndex} className={getChangeClass(cellValue)}>
+                        {isEditing ? (
+                          <div className="flex gap-1">
+                            <Input
+                              value={editValue}
+                              onChange={(e) => setEditValue(e.target.value)}
+                              onKeyDown={handleKeyDown}
+                              disabled={saving}
+                              className="h-8"
+                              autoFocus
+                            />
+                            <Button size="sm" onClick={saveEdit} disabled={saving} className="h-8 px-2">
+                              保存
+                            </Button>
+                            <Button size="sm" variant="ghost" onClick={cancelEdit} className="h-8 px-2">
+                              取消
+                            </Button>
+                          </div>
+                        ) : (
+                          <div
+                            onClick={() => startEdit(rowIndex, colIndex, cellValue)}
+                            className="cursor-pointer hover:bg-gray-100 min-h-[32px] py-1 px-2 rounded"
+                          >
+                            {cellValue || '-'}
+                          </div>
+                        )}
+                      </TableCell>
+                    )
+                  })}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>📈 投资逻辑</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-start gap-2">
-              <Badge variant="outline">黄金预测</Badge>
-              <span>关注美国PPI/CPI数据、美联储降息预期、地缘风险</span>
+      {/* 关键因素 */}
+      {summary?.keyFactors && (
+        <Card>
+          <CardHeader>
+            <CardTitle>关键影响因素</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-2 flex-wrap">
+              {summary.keyFactors.map((factor: string, index: number) => (
+                <Badge key={index} variant="secondary">{factor}</Badge>
+              ))}
             </div>
-            <div className="flex items-start gap-2">
-              <Badge variant="outline">基金板块</Badge>
-              <span>关注A股三大指数、基金涨跌分化、行业轮动（新能源/AI算力/游戏/医药）</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Badge variant="outline">中国投资逻辑</Badge>
-              <span>从"外部地缘博弈"转向"内部景气验证"，一季报密集期业绩为王</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

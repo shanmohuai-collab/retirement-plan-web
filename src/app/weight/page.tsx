@@ -8,15 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 
-interface Sheet {
-  id: string
-  name: string
-  index: number
-}
-
 export default function WeightPage() {
-  const [sheets, setSheets] = useState<Sheet[]>([])
-  const [currentSheet, setCurrentSheet] = useState<string>('')
   const [headers, setHeaders] = useState<string[]>([])
   const [rows, setRows] = useState<any[][]>([])
   const [loading, setLoading] = useState(true)
@@ -26,53 +18,26 @@ export default function WeightPage() {
   const [editingCell, setEditingCell] = useState<{ row: number; col: number } | null>(null)
   const [editValue, setEditValue] = useState<string>('')
   const [saving, setSaving] = useState(false)
+  const [summary, setSummary] = useState<any>(null)
 
-  // 加载 sheet 列表
+  // 加载数据
   useEffect(() => {
-    fetchSheets()
+    fetchData()
   }, [])
 
-  // 加载单元格数据
-  useEffect(() => {
-    if (currentSheet) {
-      fetchCells(currentSheet)
-    }
-  }, [currentSheet])
-
-  async function fetchSheets() {
+  async function fetchData() {
     try {
       setLoading(true)
-      const res = await fetch('/api/kdocs/read?action=sheets')
+      const res = await fetch('/data/weight.json')
+      if (!res.ok) throw new Error('加载数据失败')
       const json = await res.json()
       
-      if (json.sheets) {
-        setSheets(json.sheets)
-        const weightSheet = json.sheets.find((s: Sheet) => s.name.includes('体重'))
-        if (weightSheet) {
-          setCurrentSheet(weightSheet.id)
-        } else if (json.sheets.length > 0) {
-          setCurrentSheet(json.sheets[0].id)
-        }
-      }
+      setHeaders(json.headers || [])
+      setRows(json.rows || [])
+      setSummary(json.summary || null)
     } catch (err: any) {
       setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function fetchCells(sheetId: string) {
-    try {
-      setLoading(true)
-      const res = await fetch(`/api/kdocs/read?action=cells&sheetId=${sheetId}&rowFrom=0&rowTo=200&colFrom=0&colTo=30`)
-      const json = await res.json()
-      
-      if (json.values) {
-        setHeaders(json.values[0] || [])
-        setRows(json.values.slice(1))
-      }
-    } catch (err: any) {
-      setError(err.message)
+      toast.error(err.message)
     } finally {
       setLoading(false)
     }
@@ -90,40 +55,30 @@ export default function WeightPage() {
     setEditValue('')
   }
 
-  // 保存编辑
+  // 保存编辑（保存到 localStorage，并提示用户）
   async function saveEdit() {
-    if (!editingCell || !currentSheet) return
-
+    if (!editingCell) return
+    
     try {
       setSaving(true)
-      const res = await fetch('/api/kdocs/write', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sheetId: currentSheet,
-          cells: [{
-            row: editingCell.row,
-            col: editingCell.col,
-            value: editValue,
-          }],
-        }),
-      })
-
-      const json = await res.json()
       
-      if (json.success) {
-        toast.success('保存成功！')
-        // 更新本地数据
-        setRows(prev => {
-          const newRows = [...prev]
-          newRows[editingCell.row] = [...newRows[editingCell.row]]
-          newRows[editingCell.row][editingCell.col] = editValue
-          return newRows
-        })
-        cancelEdit()
-      } else {
-        toast.error(`保存失败: ${json.error || '未知错误'}`)
-      }
+      // 保存到 localStorage
+      const storageKey = 'weight_edits'
+      const edits = JSON.parse(localStorage.getItem(storageKey) || '{}')
+      const key = `${editingCell.row}_${editingCell.col}`
+      edits[key] = editValue
+      localStorage.setItem(storageKey, JSON.stringify(edits))
+      
+      // 更新本地数据
+      setRows(prev => {
+        const newRows = [...prev]
+        newRows[editingCell.row] = [...newRows[editingCell.row]]
+        newRows[editingCell.row][editingCell.col] = editValue
+        return newRows
+      })
+      
+      toast.success('已保存到本地（刷新后失效）。真实数据请在金山文档 Excel 中修改。')
+      cancelEdit()
     } catch (err: any) {
       toast.error(`保存失败: ${err.message}`)
     } finally {
@@ -140,7 +95,7 @@ export default function WeightPage() {
     }
   }
 
-  if (loading && !currentSheet) {
+  if (loading) {
     return <div className="flex items-center justify-center h-64">加载中...</div>
   }
 
@@ -148,7 +103,7 @@ export default function WeightPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">体重板块</h1>
-        <Badge variant="outline">实时读取金山文档</Badge>
+        <Badge variant="outline">数据来源：金山文档（每日自动同步）</Badge>
       </div>
 
       {error && (
@@ -157,23 +112,32 @@ export default function WeightPage() {
         </Card>
       )}
 
-      {/* Sheet 切换 */}
-      <div className="flex gap-2 flex-wrap">
-        {sheets.map((sheet) => (
-          <Button
-            key={sheet.id}
-            variant={currentSheet === sheet.id ? 'default' : 'outline'}
-            onClick={() => setCurrentSheet(sheet.id)}
-          >
-            {sheet.name}
-          </Button>
-        ))}
-      </div>
+      {/* 统计卡片 */}
+      {summary && (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">起始体重</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.startWeight} 斤</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">当前体重</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.currentWeight} 斤</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">已减重量</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold text-green-600">-{summary.totalLoss} 斤</p></CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">百日进度</CardTitle></CardHeader>
+            <CardContent><p className="text-2xl font-bold">{summary.progress}</p></CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* 数据表格 */}
       <Card>
         <CardHeader>
-          <CardTitle>数据列表（点击单元格编辑）</CardTitle>
+          <CardTitle>数据列表（点击单元格编辑，仅本地保存）</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
