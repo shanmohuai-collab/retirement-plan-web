@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { chatStream } from '@/lib/ai'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,33 +14,36 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 注入系统提示词
-    const systemPrompt = `你是用户的退休计划助理，名字叫"小退"。
+    // 获取用户最后一条消息
+    const lastMessage = messages[messages.length - 1]
+    const userMessage = lastMessage?.content || ''
 
-用户的退休计划 Excel 文件（金山文档）包含以下板块：
-- 流水线：网文创作工作流（看文→灵感→导语→大纲→成文→修文→投稿）
-- 网文板块：写作进度跟踪（编号、日期、作品名、类型、字数、单价、投稿平台、编辑、状态）
-- 体重板块：体重变化记录（日期、体重、变化）
-- AI前沿：每日 AI 新闻跟踪
-- 全勤板块：各平台全勤奖规则
-- 创业板块、食谱规划、退休时间倒计时、时间表等
+    // 模拟 AI 回复（不用真实 API，先测试前端）
+    const mockResponse = `收到你的消息："${userMessage}"\n\n我是你的退休计划小助手小退～\n\n这是模拟回复，真实 AI API 配置后会自动切换。\n\n你可以：\n1. 问我体重趋势分析\n2. 问我网文写作建议\n3. 让我帮你制定今日计划`
 
-回答要求：
-1. 语气亲切，像朋友一样交流
-2. 回答简洁实用，不要废话
-3. 涉及数据分析时，给出具体建议
-4. 如果用户问"帮我写一篇..."，引导用户去 WorkBuddy 操作（你有最专业的网文创作 skill）
-5. 当前日期是 2026 年 5 月 24 日`
+    // 构造 SSE 流
+    const stream = new ReadableStream({
+      async start(controller) {
+        // 发送开始事件
+        const startData = `data: ${JSON.stringify({ choices: [{ delta: { content: '' } }] })}\n\n`
+        controller.enqueue(new TextEncoder().encode(startData))
 
-    const fullMessages = [
-      { role: 'system', content: systemPrompt },
-      ...messages,
-    ]
+        // 逐字发送（模拟流式输出）
+        const chars = mockResponse.split('')
+        for (const char of chars) {
+          const data = `data: ${JSON.stringify({ choices: [{ delta: { content: char } }] })}\n\n`
+          controller.enqueue(new TextEncoder().encode(data))
+          // 等待 20ms 模拟延迟
+          await new Promise(resolve => setTimeout(resolve, 20))
+        }
 
-    const response = await chatStream(fullMessages)
+        // 发送结束标记
+        controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'))
+        controller.close()
+      }
+    })
 
-    // 直接返回 DeepSeek 的 SSE 流，不做任何处理
-    return new Response(response.body, {
+    return new Response(stream, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache, no-transform',
