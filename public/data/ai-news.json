@@ -1,6 +1,106 @@
 [
   {
     "id": 1,
+    "date": "2026-05-26",
+    "title": "GPT-5.6 意外泄露：150万token上下文，零指令生成商业级UI",
+    "summary": "开发者在 OpenAI Codex 后台日志中发现未发布的 GPT-5.6（内部代号 iris-alpha），支持 150 万 token 上下文窗口，可零指令生成高质量商业级 UI。预计 6 月初发布，同期 Anthropic、Google 也将推出新模型。",
+    "source": "新智元 / AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25477",
+    "category": "大模型",
+    "tags": ["OpenAI", "GPT-5.6", "模型泄露", "上下文窗口"]
+  },
+  {
+    "id": 2,
+    "date": "2026-05-25",
+    "title": "DeepMind AI 一夜破解 9 道悬置数十年的数学难题",
+    "summary": "Google DeepMind 发布 AI 数学智能体 AlphaProof Nexus，结合大语言模型、强化学习与进化算法，解决了 9 道悬宕数十年的 Erdős 开放问题，其中最老的问题已悬置 56 年，单题算力成本仅几百美元。",
+    "source": "Google DeepMind / 新智元",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25476",
+    "category": "AI Agent",
+    "tags": ["DeepMind", "AlphaProof", "数学证明", "AI for Science"]
+  },
+  {
+    "id": 3,
+    "date": "2026-05-25",
+    "title": "Anthropic 完成超 300 亿美元融资，估值突破 9000 亿美元",
+    "summary": "Anthropic 最快本周完成超 300 亿美元融资，估值有望突破 9000 亿美元，超越 OpenAI 的 8520 亿美元估值，登顶全球 AI 初创企业估值榜首。本轮融资由红杉资本、Dragoneer、Altimeter 和 Greenoaks 联合领投。",
+    "source": "每日经济新闻",
+    "url": "https://www.nbd.com.cn/articles/2026-05-25/4406727.html",
+    "category": "应用落地",
+    "tags": ["Anthropic", "融资", "估值", "Claude"]
+  },
+  {
+    "id": 4,
+    "date": "2026-05-25",
+    "title": "华为提出「韬定律」，以时间缩微替代几何缩微引领芯片演进",
+    "summary": "华为在 IEEE ISCAS 2026 上正式发布「韬（τ）定律」，提出以「时间缩微」替代「几何缩微」作为半导体演进新原则。过去六年已基于该定律量产 381 款芯片，预计 2031 年高端芯片晶体管密度达等效 1.4nm 水平。",
+    "source": "36氪 / 爱范儿",
+    "url": "https://www.36kr.com/p/3824398989169033",
+    "category": "硬件",
+    "tags": ["华为", "韬定律", "半导体", "国产芯片"]
+  },
+  {
+    "id": 5,
+    "date": "2026-05-25",
+    "title": "Claude「永久大脑」升级：双模记忆系统 + 7×24 小时智能体平台",
+    "summary": "Anthropic 为 Claude 测试双模记忆系统，新增文件记忆功能和 Dreams 后台记忆整理机制，并推出 7×24 小时永不下线的 Conway Agent 平台。首批企业使用后错误率降低 97%，文档处理提速 30%。",
+    "source": "新智元 / AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25467",
+    "category": "AI Agent",
+    "tags": ["Anthropic", "Claude", "记忆系统", "智能体"]
+  },
+  {
+    "id": 6,
+    "date": "2026-05-25",
+    "title": "AI 首次独立完成芯片设计：219 词需求到 7nm 版图仅 12 小时",
+    "summary": "AI 初创公司 Verkor 开发的 Design Conductor 系统，仅用 219 个英文单词需求描述，12 小时内自主完成 7nm RISC-V CPU 从需求到版图的全设计流程，工程师全程未参与。CoreMark 分数达 3261，频率 1.48GHz。",
+    "source": "新智元 / AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25448",
+    "category": "AI Agent",
+    "tags": ["AI芯片", "RISC-V", "自动化设计", "Verkor"]
+  },
+  {
+    "id": 7,
+    "date": "2026-05-25",
+    "title": "天机智能完成 10 亿元融资，具身智能赛道再添独角兽",
+    "summary": "具身智能基础设施公司天机智能完成 10 亿元 B 轮及 B+ 轮融资，投后估值近百亿，由高瓴创投、美团战投联合领投，腾讯等跟投。公司是全球首家实现力控人形双臂量产交付的企业，2026 年 Q1 在手订单超 1 万台。",
+    "source": "界面新闻",
+    "url": "https://www.jiemian.com/article/14478357.html",
+    "category": "硬件",
+    "tags": ["具身智能", "机器人", "融资", "天机智能"]
+  },
+  {
+    "id": 8,
+    "date": "2026-05-25",
+    "title": "面壁智能突破端侧大模型瓶颈：600 亿参数有望装进 8GB 手机",
+    "summary": "面壁智能联合清华、OpenBMB 发布开源三值大模型 BitCPM-CANN，采用 1.58-bit 量化技术，节省约 6 倍显存，能力保留率最高达 97.2%。首次在华为昇腾上完成三值大模型训练，未来有望让 600 亿参数大模型运行在 8GB 内存手机上。",
+    "source": "APPSO / AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25471",
+    "category": "开源模型",
+    "tags": ["面壁智能", "端侧模型", "模型量化", "昇腾"]
+  },
+  {
+    "id": 9,
+    "date": "2026-05-23",
+    "title": "DeepSeek-V4-Pro API 永久降价 75%，创全球大模型价格新低",
+    "summary": "DeepSeek 宣布 V4-Pro 模型 API 永久降价至原价的四分之一，输入缓存命中仅 0.025 元/百万 Tokens，创全球主流大模型价格新低。同时传闻浙大天才少年崔添翼加盟，组建代码智能体团队 Harness 对标 Claude Code。",
+    "source": "潮新闻 / 腾讯新闻",
+    "url": "https://news.qq.com/rain/a/20260523A09MUU00",
+    "category": "大模型",
+    "tags": ["DeepSeek", "API降价", "价格战", "代码智能体"]
+  },
+  {
+    "id": 10,
+    "date": "2026-05-20",
+    "title": "Google 发布 Gemini 3.5：速度 4 倍、价格砍半，全面布局智能体 AI",
+    "summary": "在 Google I/O 2026 大会上，Google 正式发布 Gemini 3.5 系列模型，其中 Flash 版本速度达其他前沿模型的 4 倍，智能体任务费用不到竞品一半。同时推出个人 AI 智能体 Spark、AI 音频眼镜等产品，2026 年资本支出预计达 1800-1900 亿美元。",
+    "source": "钛媒体 / 凤凰网",
+    "url": "https://tech.ifeng.com/c/8tH8JdqnZDf",
+    "category": "大模型",
+    "tags": ["Google", "Gemini 3.5", "智能体", "Google I/O"]
+  },
+  {
+    "id": 11,
     "date": "2026-05-24",
     "title": "OpenAI 发布 GPT-5 预览版，推理能力大幅提升",
     "summary": "OpenAI 今日发布了 GPT-5 的预览版本，在推理、代码生成和多模态理解方面都有显著提升。新模型在 MATH 基准测试中达到 95% 准确率。",
@@ -10,7 +110,7 @@
     "tags": ["OpenAI", "GPT-5", "推理能力"]
   },
   {
-    "id": 2,
+    "id": 12,
     "date": "2026-05-24",
     "title": "Google DeepMind 推出 Genie 3，可生成可交互的游戏世界",
     "summary": "Google DeepMind 发布了 Genie 3，一个能够从单张图像生成可交互 2D 游戏世界的 AI 模型。该模型可以创建具有物理一致性的游戏环境。",
@@ -20,7 +120,7 @@
     "tags": ["DeepMind", "Genie", "游戏生成"]
   },
   {
-    "id": 3,
+    "id": 13,
     "date": "2026-05-23",
     "title": "Meta 开源 Llama 4，性能超越 GPT-4",
     "summary": "Meta 正式开源 Llama 4 系列模型，包含 Llama 4 Scout 和 Llama 4 Maverick 两个版本。在多项基准测试中，Llama 4 Maverick 的性能超越 GPT-4。",
@@ -30,7 +130,7 @@
     "tags": ["Meta", "Llama 4", "开源"]
   },
   {
-    "id": 4,
+    "id": 14,
     "date": "2026-05-23",
     "title": "Anthropic Claude 3.5 Opus 支持 100 万 token 上下文",
     "summary": "Anthropic 升级 Claude 3.5 Opus，现在支持 100 万 token 的上下文窗口，使其成为目前市场上上下文最长的商业 AI 模型。",
@@ -40,7 +140,7 @@
     "tags": ["Anthropic", "Claude", "上下文长度"]
   },
   {
-    "id": 5,
+    "id": 15,
     "date": "2026-05-22",
     "title": "微软 Copilot 集成 Sora 视频生成能力",
     "summary": "微软宣布将 OpenAI 的 Sora 视频生成模型集成到 Copilot 中，用户现在可以通过自然语言描述生成高质量视频内容。",
@@ -50,7 +150,7 @@
     "tags": ["微软", "Copilot", "Sora", "视频生成"]
   },
   {
-    "id": 6,
+    "id": 16,
     "date": "2026-05-22",
     "title": "英伟达发布 B200 GPU，专为大模型训练优化",
     "summary": "英伟达发布新一代 B200 GPU，采用 Blackwell 架构，专为大模型训练和推理优化。相比上一代 H100，训练速度提升 3 倍。",
@@ -60,7 +160,7 @@
     "tags": ["英伟达", "B200", "GPU", "Blackwell"]
   },
   {
-    "id": 7,
+    "id": 17,
     "date": "2026-05-21",
     "title": "斯坦福大学开发出可解释性 AI 工具 XAI-Toolkit",
     "summary": "斯坦福大学研究团队发布了 XAI-Toolkit，一个开源工具包，帮助理解和解释深度学习模型的决策过程，提升 AI 的透明度和可信度。",
@@ -70,7 +170,7 @@
     "tags": ["斯坦福", "可解释性", "XAI"]
   },
   {
-    "id": 8,
+    "id": 18,
     "date": "2026-05-21",
     "title": "AI 代理自主完成软件项目，成功率突破 60%",
     "summary": "最新研究显示，使用 GPT-5 和 Claude 3.5 的 AI 代理在 SWE-bench 软件工程基准测试中成功率突破 60%，接近初级工程师水平。",
