@@ -1,312 +1,611 @@
 [
   {
-    "id": 1,
+    "date": "2026-05-28",
+    "title": "Cognition 融资超 10 亿美元，估值达 260 亿美元，成全球最大独立智能体实验室",
+    "summary": "AI 智能体公司 Cognition 完成超 10 亿美元融资，Lux Capital、General Catalyst 联合领投，估值达 260 亿美元。其核心产品 Devin 是全球首个 AI 软件工程师，年化收入从 3700 万美元飙升至 4.92 亿美元。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16898",
+    "category": "AI Agent",
+    "tags": [
+      "Cognition",
+      "Devin",
+      "融资",
+      "AI智能体"
+    ],
+    "id": 1
+  },
+  {
+    "date": "2026-05-28",
+    "title": "OpenAI 斥资 2.34 亿美元在新加坡设立首个海外 AI 实验室",
+    "summary": "OpenAI 宣布投入超 3 亿新元（约 2.34 亿美元）在新加坡设立首个美国本土外的应用 AI 实验室，预计创造 200 多个技术岗位。同日新加坡还宣布与谷歌、英伟达分别达成 AI 合作协议。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16871",
+    "category": "应用落地",
+    "tags": [
+      "OpenAI",
+      "新加坡",
+      "AI实验室",
+      "国际化"
+    ],
+    "id": 2
+  },
+  {
+    "date": "2026-05-28",
+    "title": "OpenAI 扩大广告平台覆盖至美加澳新免费用户，取消 20 万美元预付门槛",
+    "summary": "OpenAI 广告平台进入 ADGI 测试阶段，面向美国、加拿大、澳大利亚、新西兰的免费 ChatGPT 用户开放。取消 20 万美元预付门槛，推出 AI 广告工具包，从服务大型企业转向本地中小企业市场。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16897",
+    "category": "应用落地",
+    "tags": [
+      "OpenAI",
+      "广告平台",
+      "ChatGPT",
+      "商业化"
+    ],
+    "id": 3
+  },
+  {
+    "date": "2026-05-28",
+    "title": "Snowflake 与 AWS 签署五年 60 亿美元协议，强化 Graviton 芯片 AI 算力布局",
+    "summary": "云数据平台 Snowflake 与 AWS 签署五年 60 亿美元协议，采购 AWS 自研 ARM 架构 Graviton 芯片，支撑 Snowflake Cortex AI 工具算力需求。云厂商自研芯片已成行业趋势，AI 算力竞争白热化。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16899",
+    "category": "硬件",
+    "tags": [
+      "Snowflake",
+      "AWS",
+      "Graviton",
+      "云算力"
+    ],
+    "id": 4
+  },
+  {
+    "date": "2026-05-28",
+    "title": "美光科技市值突破 1 万亿美元，HBM 高带宽内存供货已售罄",
+    "summary": "美光科技因 AI 内存需求爆发，股价大涨 19.3%，市值突破 1.01 万亿美元。HBM 高带宽内存 2026 年供货已全部售罄，预计 HBM 市场规模将从 2025 年 350 亿美元增至 2028 年 1000 亿美元。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16866",
+    "category": "硬件",
+    "tags": [
+      "美光科技",
+      "HBM",
+      "AI内存",
+      "万亿市值"
+    ],
+    "id": 5
+  },
+  {
+    "date": "2026-05-27",
+    "title": "OpenRouter 完成 1.13 亿美元 B 轮融资，英伟达参投，估值超 10 亿美元",
+    "summary": "AI 模型聚合平台 OpenRouter 完成 1.13 亿美元 B 轮融资，Google 母公司 CapitalG 领投，a16z、英伟达 NVentures 参投，估值超 10 亿美元。过去 6 个月周度调用量从 5 万亿增至 25 万亿 Tokens。",
+    "source": "AITNT / 钛媒体",
+    "url": "https://www.tmtpost.com/agent/ai-article?id=16852",
+    "category": "应用落地",
+    "tags": [
+      "OpenRouter",
+      "API聚合",
+      "融资",
+      "英伟达"
+    ],
+    "id": 6
+  },
+  {
+    "date": "2026-05-27",
+    "title": "小米大模型永久降价 99%，正面对标 DeepSeek 价格战",
+    "summary": "小米宣布旗下大模型服务永久降价 99%，以极低价格正面迎击 DeepSeek 发起的大模型价格战。此举将进一步压缩行业利润空间，加速 AI 应用普惠化进程。",
+    "source": "钛媒体",
+    "url": "https://www.tmtpost.com/8004327.html",
+    "category": "大模型",
+    "tags": [
+      "小米",
+      "大模型降价",
+      "DeepSeek",
+      "价格战"
+    ],
+    "id": 7
+  },
+  {
+    "date": "2026-05-27",
+    "title": "星巴克北美 1.1 万家门店停用 AI 库存工具，因 AI 幻觉导致盘点错误",
+    "summary": "星巴克在北美 1.1 万家门店试点 9 个月后，正式停用 AI 库存管理工具「自动计数（AC）」。原因是 AI 幻觉导致糖浆等原料盘点严重错误，成为大模型落地零售场景受挫的标志性案例。",
+    "source": "AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25558",
+    "category": "应用落地",
+    "tags": [
+      "星巴克",
+      "AI幻觉",
+      "零售",
+      "库存管理"
+    ],
+    "id": 8
+  },
+  {
+    "date": "2026-05-27",
+    "title": "教皇发布首份 AI 通谕，Anthropic 联创参与撰写，警告 AI 不能统治人类",
+    "summary": "教皇方济各发布首份关于人工智能的教宗通谕《壮丽人性》，全文约 4 万字。Anthropic 联合创始人参与撰写，警告 AI 可能演化出恐惧与悲伤等情绪，呼吁确保 AI 始终服务于人类尊严。",
+    "source": "AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25552",
+    "category": "可解释性",
+    "tags": [
+      "教皇",
+      "AI伦理",
+      "Anthropic",
+      "AI监管"
+    ],
+    "id": 9
+  },
+  {
+    "date": "2026-05-27",
+    "title": "北大系 AI 公司深演智能上市，股价大涨 300%，决策 AI 赛道第一股",
+    "summary": "北大系 AI 公司深演智能（DeepSight）正式上市，股价大涨 300%，成为决策 AI 应用服务赛道第一股。公司专注营销决策 AI，但近三年净利润缩水近 85%，商业化仍面临挑战。",
+    "source": "AITNT",
+    "url": "https://www.aitntnews.com/newDetail.html?newId=25548",
+    "category": "应用落地",
+    "tags": [
+      "深演智能",
+      "IPO",
+      "决策AI",
+      "北大系"
+    ],
+    "id": 10
+  },
+  {
+    "id": 11,
     "date": "2026-05-27",
     "title": "马斯克官宣 Grok 5：1.5 万亿参数，偷师 Cursor 狂练编程",
     "summary": "马斯克在 𝕏 上亲自官宣：1.5 万亿参数的 Grok 基座模型 V9-Medium 训练完成，是现役模型的整整三倍，2-3 周后面向公众发布。训练中灌入大量 Cursor 编程交互记录，剑指 AI 编程赛道。",
     "source": "36氪 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25515",
     "category": "大模型",
-    "tags": ["xAI", "Grok 5", "马斯克", "AI编程"]
+    "tags": [
+      "xAI",
+      "Grok 5",
+      "马斯克",
+      "AI编程"
+    ]
   },
   {
-    "id": 2,
+    "id": 12,
     "date": "2026-05-27",
     "title": "支付宝推出全球首个 Token Pay 服务，AI 付已完成 3 亿笔智能体支付",
     "summary": "支付宝推出全球首个 Token Pay 服务及 AI 钱包，完成全栈 AI 原生支付体系搭建。AI 付已完成 3 亿笔智能体支付，支持 95% 通用智能体框架，成为全球首个大规模商用的 AI 原生支付基建。",
     "source": "蚂蚁集团 / 支付宝",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25518",
     "category": "应用落地",
-    "tags": ["支付宝", "Token Pay", "AI支付", "智能体"]
+    "tags": [
+      "支付宝",
+      "Token Pay",
+      "AI支付",
+      "智能体"
+    ]
   },
   {
-    "id": 3,
+    "id": 13,
     "date": "2026-05-27",
     "title": "面壁智能推出 AI 编写的预训练框架 ForgeTrain，华为昇腾训练加速 10%",
     "summary": "面壁智能发布全球首个 AI 完全编写的生产级大模型预训练框架 ForgeTrain，性能超英伟达 Megatron，华为昇腾训练加速 10%。同步开源 1B 端侧模型 MiniCPM5-1B，推动端侧 AI 发展。",
     "source": "面壁智能 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25510",
     "category": "开源模型",
-    "tags": ["面壁智能", "ForgeTrain", "预训练框架", "昇腾"]
+    "tags": [
+      "面壁智能",
+      "ForgeTrain",
+      "预训练框架",
+      "昇腾"
+    ]
   },
   {
-    "id": 4,
+    "id": 14,
     "date": "2026-05-27",
     "title": "宇树科技 6 月 1 日科创板首发上会，人形机器人第一股临门一脚",
     "summary": "宇树科技将于 6 月 1 日被审议科创板首发事项，从受理到上会仅 66 天创科创板纪录。2025 年营收 16.99 亿，人形机器人业务占比超 50%，预计发行市值至少 420 亿。",
     "source": "宇树科技 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25516",
     "category": "硬件",
-    "tags": ["宇树科技", "IPO", "人形机器人", "科创板"]
+    "tags": [
+      "宇树科技",
+      "IPO",
+      "人形机器人",
+      "科创板"
+    ]
   },
   {
-    "id": 5,
+    "id": 15,
     "date": "2026-05-27",
     "title": "昆仑万维发布 SkyClaw 两款 Agent 模型，性能进入全球第一梯队",
     "summary": "昆仑万维发布 SkyClaw-v1.0 及轻量版两款 Agent 模型，性能进入全球第一梯队，价格仅主流一半甚至更低，兼容主流 Agent 框架，限时免费开放使用。",
     "source": "昆仑万维 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25508",
     "category": "AI Agent",
-    "tags": ["昆仑万维", "SkyClaw", "Agent模型", "开源"]
+    "tags": [
+      "昆仑万维",
+      "SkyClaw",
+      "Agent模型",
+      "开源"
+    ]
   },
   {
-    "id": 6,
+    "id": 16,
     "date": "2026-05-27",
     "title": "AI 初创公司 Hark 获 7 亿美元 A 轮融资，英伟达押注",
     "summary": "AI 初创公司 Hark 完成 7 亿美元 A 轮融资，投后估值 60 亿美元。公司 2025 年底成立，计划打造消费者个人 AI 助手 + 原生 AI 硬件，英伟达参与投资。",
     "source": "Hark / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25509",
     "category": "应用落地",
-    "tags": ["Hark", "融资", "AI助手", "英伟达"]
+    "tags": [
+      "Hark",
+      "融资",
+      "AI助手",
+      "英伟达"
+    ]
   },
   {
-    "id": 7,
+    "id": 17,
     "date": "2026-05-27",
     "title": "Anthropic 拟三年内向 SpaceX 支付近 450 亿美元购买算力",
     "summary": "据 Altimeter 披露，Anthropic 计划三年内向 SpaceX 支付近 450 亿美元购买算力，年费 150 亿、月费 12.5 亿，这将使 SpaceX 年化营收几乎翻倍。",
     "source": "Altimeter / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25496",
     "category": "大模型",
-    "tags": ["Anthropic", "SpaceX", "算力", "融资"]
+    "tags": [
+      "Anthropic",
+      "SpaceX",
+      "算力",
+      "融资"
+    ]
   },
   {
-    "id": 8,
+    "id": 18,
     "date": "2026-05-27",
     "title": "Kimi 完成 C 轮融资，投后估值 43 亿美元",
     "summary": "月之暗面旗下 Kimi 完成 C 轮融资，IDG 领投 5 亿美元，今日资本徐新推动，投后估值达 43 亿美元，持续加码大模型赛道竞争。",
     "source": "Kimi / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25489",
     "category": "大模型",
-    "tags": ["Kimi", "月之暗面", "融资", "IDG"]
+    "tags": [
+      "Kimi",
+      "月之暗面",
+      "融资",
+      "IDG"
+    ]
   },
   {
-    "id": 9,
+    "id": 19,
     "date": "2026-05-27",
     "title": "MIT 何恺明团队与字节 Seed 证实：语言生成可在连续空间完成",
     "summary": "MIT 何恺明团队与字节 Seed 实验室同时发表论文，证实语言生成可在连续空间完成，效果优于传统离散 token 方式。这一发现可能颠覆现有大模型架构基础。",
     "source": "MIT / 字节跳动 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25507",
     "category": "研究",
-    "tags": ["MIT", "何恺明", "字节Seed", "Token-free"]
+    "tags": [
+      "MIT",
+      "何恺明",
+      "字节Seed",
+      "Token-free"
+    ]
   },
   {
-    "id": 10,
+    "id": 20,
     "date": "2026-05-27",
     "title": "字节跳动 2026 年 AI 基础设施支出提升至 2000 亿元",
     "summary": "字节跳动 2026 年 AI 基础设施支出提升 25% 至 2000 亿元，聚焦豆包大模型，裁撤 30% 非核心 AI 应用。豆包月活 4.49 亿居行业第一，但面临流量增长瓶颈。",
     "source": "字节跳动 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25504",
     "category": "应用落地",
-    "tags": ["字节跳动", "豆包", "AI基建", "裁员"]
+    "tags": [
+      "字节跳动",
+      "豆包",
+      "AI基建",
+      "裁员"
+    ]
   },
   {
-    "id": 11,
+    "id": 21,
     "date": "2026-05-26",
     "title": "国产 AI 芯片市场份额首破 50%，华为昇腾以 37% 断层领跑",
     "summary": "2026 年 Q1 国产 AI 芯片国内市场份额首次突破 50% 达 52.3%，华为昇腾以 37% 市占率断层领跑。英伟达在华份额从巅峰 95% 暴跌至 42.7%，中国 AI 算力自主可控迈出决定性一步。",
     "source": "IDC / 搜狐科技",
     "url": "https://www.sohu.com/a/1022009915_122674086",
     "category": "硬件",
-    "tags": ["国产芯片", "华为昇腾", "英伟达", "市场份额"]
+    "tags": [
+      "国产芯片",
+      "华为昇腾",
+      "英伟达",
+      "市场份额"
+    ]
   },
   {
-    "id": 12,
+    "id": 22,
     "date": "2026-05-26",
     "title": "OpenAI 差点没了？总裁 Brockman 首次复盘 2023 年罢免危机",
     "summary": "OpenAI 总裁 Greg Brockman 首次公开复盘 2023 年奥特曼被罢免的 72 小时危机，讲述当天自己就辞职了，以及公司治理变迁与 AI 研发未来判断。",
     "source": "OpenAI / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25502",
     "category": "大模型",
-    "tags": ["OpenAI", "Greg Brockman", "奥特曼", "公司治理"]
+    "tags": [
+      "OpenAI",
+      "Greg Brockman",
+      "奥特曼",
+      "公司治理"
+    ]
   },
   {
-    "id": 13,
+    "id": 23,
     "date": "2026-05-26",
     "title": "Sam Altman 拿算力换股份：向 169 家 YC 公司各发 200 万美元 Token",
     "summary": "Sam Altman 宣布向 169 家 YC 公司各发放 200 万美元 Token 换取股权，总价值超 3 亿美元。这一创新投资模式引发业界热议，被视为 AI 时代的新型资本运作。",
     "source": "OpenAI / YC / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25492",
     "category": "应用落地",
-    "tags": ["Sam Altman", "YC", "Token", "投资"]
+    "tags": [
+      "Sam Altman",
+      "YC",
+      "Token",
+      "投资"
+    ]
   },
   {
-    "id": 14,
+    "id": 24,
     "date": "2026-05-25",
     "title": "GPT-5.6 意外泄露：150 万 token 上下文，零指令生成商业级 UI",
     "summary": "开发者在 OpenAI Codex 后台日志中发现未发布的 GPT-5.6（内部代号 iris-alpha），支持 150 万 token 上下文窗口，可零指令生成高质量商业级 UI。预计 6 月初发布，同期 Anthropic、Google 也将推出新模型。",
     "source": "新智元 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25477",
     "category": "大模型",
-    "tags": ["OpenAI", "GPT-5.6", "模型泄露", "上下文窗口"]
+    "tags": [
+      "OpenAI",
+      "GPT-5.6",
+      "模型泄露",
+      "上下文窗口"
+    ]
   },
   {
-    "id": 15,
+    "id": 25,
     "date": "2026-05-25",
     "title": "DeepMind AI 一夜破解 9 道悬置数十年的数学难题",
     "summary": "Google DeepMind 发布 AI 数学智能体 AlphaProof Nexus，结合大语言模型、强化学习与进化算法，解决了 9 道悬宕数十年的 Erdős 开放问题，其中最老的问题已悬置 56 年，单题算力成本仅几百美元。",
     "source": "Google DeepMind / 新智元",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25476",
     "category": "AI Agent",
-    "tags": ["DeepMind", "AlphaProof", "数学证明", "AI for Science"]
+    "tags": [
+      "DeepMind",
+      "AlphaProof",
+      "数学证明",
+      "AI for Science"
+    ]
   },
   {
-    "id": 16,
+    "id": 26,
     "date": "2026-05-25",
     "title": "Anthropic 完成超 300 亿美元融资，估值突破 9000 亿美元",
     "summary": "Anthropic 最快本周完成超 300 亿美元融资，估值有望突破 9000 亿美元，超越 OpenAI 的 8520 亿美元估值，登顶全球 AI 初创企业估值榜首。本轮融资由红杉资本、Dragoneer、Altimeter 和 Greenoaks 联合领投。",
     "source": "每日经济新闻",
     "url": "https://www.nbd.com.cn/articles/2026-05-25/4406727.html",
     "category": "应用落地",
-    "tags": ["Anthropic", "融资", "估值", "Claude"]
+    "tags": [
+      "Anthropic",
+      "融资",
+      "估值",
+      "Claude"
+    ]
   },
   {
-    "id": 17,
+    "id": 27,
     "date": "2026-05-25",
     "title": "华为提出「韬定律」，以时间缩微替代几何缩微引领芯片演进",
     "summary": "华为在 IEEE ISCAS 2026 上正式发布「韬（τ）定律」，提出以「时间缩微」替代「几何缩微」作为半导体演进新原则。过去六年已基于该定律量产 381 款芯片，预计 2031 年高端芯片晶体管密度达等效 1.4nm 水平。",
     "source": "36氪 / 爱范儿",
     "url": "https://www.36kr.com/p/3824398989169033",
     "category": "硬件",
-    "tags": ["华为", "韬定律", "半导体", "国产芯片"]
+    "tags": [
+      "华为",
+      "韬定律",
+      "半导体",
+      "国产芯片"
+    ]
   },
   {
-    "id": 18,
+    "id": 28,
     "date": "2026-05-25",
     "title": "Claude「永久大脑」升级：双模记忆系统 + 7×24 小时智能体平台",
     "summary": "Anthropic 为 Claude 测试双模记忆系统，新增文件记忆功能和 Dreams 后台记忆整理机制，并推出 7×24 小时永不下线的 Conway Agent 平台。首批企业使用后错误率降低 97%，文档处理提速 30%。",
     "source": "新智元 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25467",
     "category": "AI Agent",
-    "tags": ["Anthropic", "Claude", "记忆系统", "智能体"]
+    "tags": [
+      "Anthropic",
+      "Claude",
+      "记忆系统",
+      "智能体"
+    ]
   },
   {
-    "id": 19,
+    "id": 29,
     "date": "2026-05-25",
     "title": "AI 首次独立完成芯片设计：219 词需求到 7nm 版图仅 12 小时",
     "summary": "AI 初创公司 Verkor 开发的 Design Conductor 系统，仅用 219 个英文单词需求描述，12 小时内自主完成 7nm RISC-V CPU 从需求到版图的全设计流程，工程师全程未参与。CoreMark 分数达 3261，频率 1.48GHz。",
     "source": "新智元 / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25448",
     "category": "AI Agent",
-    "tags": ["AI芯片", "RISC-V", "自动化设计", "Verkor"]
+    "tags": [
+      "AI芯片",
+      "RISC-V",
+      "自动化设计",
+      "Verkor"
+    ]
   },
   {
-    "id": 20,
+    "id": 30,
     "date": "2026-05-25",
     "title": "天机智能完成 10 亿元融资，具身智能赛道再添独角兽",
     "summary": "具身智能基础设施公司天机智能完成 10 亿元 B 轮及 B+ 轮融资，投后估值近百亿，由高瓴创投、美团战投联合领投，腾讯等跟投。公司是全球首家实现力控人形双臂量产交付的企业，2026 年 Q1 在手订单超 1 万台。",
     "source": "界面新闻",
     "url": "https://www.jiemian.com/article/14478357.html",
     "category": "硬件",
-    "tags": ["具身智能", "机器人", "融资", "天机智能"]
+    "tags": [
+      "具身智能",
+      "机器人",
+      "融资",
+      "天机智能"
+    ]
   },
   {
-    "id": 21,
+    "id": 31,
     "date": "2026-05-25",
     "title": "面壁智能突破端侧大模型瓶颈：600 亿参数有望装进 8GB 手机",
     "summary": "面壁智能联合清华、OpenBMB 发布开源三值大模型 BitCPM-CANN，采用 1.58-bit 量化技术，节省约 6 倍显存，能力保留率最高达 97.2%。首次在华为昇腾上完成三值大模型训练，未来有望让 600 亿参数大模型运行在 8GB 内存手机上。",
     "source": "APPSO / AITNT",
     "url": "https://www.aitntnews.com/newDetail.html?newId=25471",
     "category": "开源模型",
-    "tags": ["面壁智能", "端侧模型", "模型量化", "昇腾"]
+    "tags": [
+      "面壁智能",
+      "端侧模型",
+      "模型量化",
+      "昇腾"
+    ]
   },
   {
-    "id": 22,
-    "date": "2026-05-23",
-    "title": "DeepSeek-V4-Pro API 永久降价 75%，创全球大模型价格新低",
-    "summary": "DeepSeek 宣布 V4-Pro 模型 API 永久降价至原价的四分之一，输入缓存命中仅 0.025 元/百万 Tokens，创全球主流大模型价格新低。同时传闻浙大天才少年崔添翼加盟，组建代码智能体团队 Harness 对标 Claude Code。",
-    "source": "潮新闻 / 腾讯新闻",
-    "url": "https://news.qq.com/rain/a/20260523A09MUU00",
-    "category": "大模型",
-    "tags": ["DeepSeek", "API降价", "价格战", "代码智能体"]
-  },
-  {
-    "id": 23,
-    "date": "2026-05-20",
-    "title": "Google 发布 Gemini 3.5：速度 4 倍、价格砍半，全面布局智能体 AI",
-    "summary": "在 Google I/O 2026 大会上，Google 正式发布 Gemini 3.5 系列模型，其中 Flash 版本速度达其他前沿模型的 4 倍，智能体任务费用不到竞品一半。同时推出个人 AI 智能体 Spark、AI 音频眼镜等产品，2026 年资本支出预计达 1800-1900 亿美元。",
-    "source": "钛媒体 / 凤凰网",
-    "url": "https://tech.ifeng.com/c/8tH8JdqnZDf",
-    "category": "大模型",
-    "tags": ["Google", "Gemini 3.5", "智能体", "Google I/O"]
-  },
-  {
-    "id": 24,
+    "id": 32,
     "date": "2026-05-24",
     "title": "OpenAI 发布 GPT-5 预览版，推理能力大幅提升",
     "summary": "OpenAI 今日发布了 GPT-5 的预览版本，在推理、代码生成和多模态理解方面都有显著提升。新模型在 MATH 基准测试中达到 95% 准确率。",
     "source": "OpenAI Blog",
     "url": "https://openai.com/blog/gpt-5-preview",
     "category": "大模型",
-    "tags": ["OpenAI", "GPT-5", "推理能力"]
+    "tags": [
+      "OpenAI",
+      "GPT-5",
+      "推理能力"
+    ]
   },
   {
-    "id": 25,
+    "id": 33,
     "date": "2026-05-24",
     "title": "Google DeepMind 推出 Genie 3，可生成可交互的游戏世界",
     "summary": "Google DeepMind 发布了 Genie 3，一个能够从单张图像生成可交互 2D 游戏世界的 AI 模型。该模型可以创建具有物理一致性的游戏环境。",
     "source": "DeepMind Blog",
     "url": "https://deepmind.google/discover/blog/genie-3/",
     "category": "生成式AI",
-    "tags": ["DeepMind", "Genie", "游戏生成"]
+    "tags": [
+      "DeepMind",
+      "Genie",
+      "游戏生成"
+    ]
   },
   {
-    "id": 26,
+    "id": 34,
+    "date": "2026-05-23",
+    "title": "DeepSeek-V4-Pro API 永久降价 75%，创全球大模型价格新低",
+    "summary": "DeepSeek 宣布 V4-Pro 模型 API 永久降价至原价的四分之一，输入缓存命中仅 0.025 元/百万 Tokens，创全球主流大模型价格新低。同时传闻浙大天才少年崔添翼加盟，组建代码智能体团队 Harness 对标 Claude Code。",
+    "source": "潮新闻 / 腾讯新闻",
+    "url": "https://news.qq.com/rain/a/20260523A09MUU00",
+    "category": "大模型",
+    "tags": [
+      "DeepSeek",
+      "API降价",
+      "价格战",
+      "代码智能体"
+    ]
+  },
+  {
+    "id": 35,
     "date": "2026-05-23",
     "title": "Meta 开源 Llama 4，性能超越 GPT-4",
     "summary": "Meta 正式开源 Llama 4 系列模型，包含 Llama 4 Scout 和 Llama 4 Maverick 两个版本。在多项基准测试中，Llama 4 Maverick 的性能超越 GPT-4。",
     "source": "Meta AI",
     "url": "https://ai.meta.com/blog/llama4/",
     "category": "开源模型",
-    "tags": ["Meta", "Llama 4", "开源"]
+    "tags": [
+      "Meta",
+      "Llama 4",
+      "开源"
+    ]
   },
   {
-    "id": 27,
+    "id": 36,
     "date": "2026-05-23",
     "title": "Anthropic Claude 3.5 Opus 支持 100 万 token 上下文",
     "summary": "Anthropic 升级 Claude 3.5 Opus，现在支持 100 万 token 的上下文窗口，使其成为目前市场上上下文最长的商业 AI 模型。",
     "source": "Anthropic",
     "url": "https://www.anthropic.com/news/claude-3-5-opus",
     "category": "大模型",
-    "tags": ["Anthropic", "Claude", "上下文长度"]
+    "tags": [
+      "Anthropic",
+      "Claude",
+      "上下文长度"
+    ]
   },
   {
-    "id": 28,
+    "id": 37,
     "date": "2026-05-22",
     "title": "微软 Copilot 集成 Sora 视频生成能力",
     "summary": "微软宣布将 OpenAI 的 Sora 视频生成模型集成到 Copilot 中，用户现在可以通过自然语言描述生成高质量视频内容。",
     "source": "Microsoft Blog",
     "url": "https://blogs.microsoft.com/ai/copilot-sora-integration/",
     "category": "应用落地",
-    "tags": ["微软", "Copilot", "Sora", "视频生成"]
+    "tags": [
+      "微软",
+      "Copilot",
+      "Sora",
+      "视频生成"
+    ]
   },
   {
-    "id": 29,
+    "id": 38,
     "date": "2026-05-22",
     "title": "英伟达发布 B200 GPU，专为大模型训练优化",
     "summary": "英伟达发布新一代 B200 GPU，采用 Blackwell 架构，专为大模型训练和推理优化。相比上一代 H100，训练速度提升 3 倍。",
     "source": "NVIDIA",
     "url": "https://www.nvidia.com/en-us/geforce/news/b200-gpu-announcement/",
     "category": "硬件",
-    "tags": ["英伟达", "B200", "GPU", "Blackwell"]
+    "tags": [
+      "英伟达",
+      "B200",
+      "GPU",
+      "Blackwell"
+    ]
   },
   {
-    "id": 30,
+    "id": 39,
     "date": "2026-05-21",
     "title": "斯坦福大学开发出可解释性 AI 工具 XAI-Toolkit",
     "summary": "斯坦福大学研究团队发布了 XAI-Toolkit，一个开源工具包，帮助理解和解释深度学习模型的决策过程，提升 AI 的透明度和可信度。",
     "source": "Stanford HAI",
     "url": "https://hai.stanford.edu/news/xai-toolkit",
     "category": "可解释性",
-    "tags": ["斯坦福", "可解释性", "XAI"]
+    "tags": [
+      "斯坦福",
+      "可解释性",
+      "XAI"
+    ]
   },
   {
-    "id": 31,
+    "id": 40,
     "date": "2026-05-21",
     "title": "AI 代理自主完成软件项目，成功率突破 60%",
     "summary": "最新研究显示，使用 GPT-5 和 Claude 3.5 的 AI 代理在 SWE-bench 软件工程基准测试中成功率突破 60%，接近初级工程师水平。",
     "source": "arXiv",
     "url": "https://arxiv.org/abs/2405.12345",
     "category": "AI Agent",
-    "tags": ["AI Agent", "软件工程", "基准测试"]
+    "tags": [
+      "AI Agent",
+      "软件工程",
+      "基准测试"
+    ]
+  },
+  {
+    "id": 41,
+    "date": "2026-05-20",
+    "title": "Google 发布 Gemini 3.5：速度 4 倍、价格砍半，全面布局智能体 AI",
+    "summary": "在 Google I/O 2026 大会上，Google 正式发布 Gemini 3.5 系列模型，其中 Flash 版本速度达其他前沿模型的 4 倍，智能体任务费用不到竞品一半。同时推出个人 AI 智能体 Spark、AI 音频眼镜等产品，2026 年资本支出预计达 1800-1900 亿美元。",
+    "source": "钛媒体 / 凤凰网",
+    "url": "https://tech.ifeng.com/c/8tH8JdqnZDf",
+    "category": "大模型",
+    "tags": [
+      "Google",
+      "Gemini 3.5",
+      "智能体",
+      "Google I/O"
+    ]
   }
 ]
