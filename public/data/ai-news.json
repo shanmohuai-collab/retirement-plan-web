@@ -1,5 +1,218 @@
 [
   {
+    "date": "2026-06-01",
+    "title": "MiniMax Agent更名为Mavis，推出多智能体协作功能",
+    "summary": "国内AI公司MiniMax将其Agent产品正式更名为Mavis，新版本重点推出多智能体协作能力，提升复杂任务的自动化处理效率，标志着国内AI Agent赛道进入多代理协作新阶段。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/minimax-agent-rebrands-as-mavis-debuts-multiagent-collaboration.html",
+    "category": "AI Agent",
+    "tags": [
+      "MiniMax",
+      "Mavis",
+      "多智能体",
+      "AI Agent"
+    ],
+    "id": 1
+  },
+  {
+    "date": "2026-06-01",
+    "title": "Anthropic目标估值900亿美元，新一轮巨额融资加剧AI算力竞争",
+    "summary": "AI独角兽Anthropic正在进行新一轮巨额融资，目标估值高达900亿美元。此前刚完成650亿美元H轮融资、估值达9650亿美元，持续大规模融资反映AI算力军备竞赛白热化。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/anthropic-targets-90b-valuation-in-mega-fundraising-heating-up-ai-compute-race.html",
+    "category": "应用落地",
+    "tags": [
+      "Anthropic",
+      "融资",
+      "估值",
+      "AI算力"
+    ],
+    "id": 2
+  },
+  {
+    "date": "2026-06-01",
+    "title": "五角大楼与英伟达、微软、AWS签约，在机密网络部署AI技术",
+    "summary": "美国国防部与英伟达、微软、AWS三大科技巨头签署合作协议，将在机密级网络环境中部署AI技术，涉及国防、太空等敏感领域，标志着AI军事化应用进入实质性阶段。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/pentagon-signs-deals-with-nvidia-microsoft-aws-to-deploy-ai-on-classified-networks.html",
+    "category": "应用落地",
+    "tags": [
+      "五角大楼",
+      "英伟达",
+      "微软",
+      "AWS",
+      "AI军事"
+    ],
+    "id": 3
+  },
+  {
+    "date": "2026-06-01",
+    "title": "科大讯飞发布AstronClaw，搭载沙箱隔离与多模型切换功能",
+    "summary": "科大讯飞推出新一代AI开发平台AstronClaw，核心特性包括沙箱安全隔离机制和多模型灵活切换能力，提升企业级AI应用的安全性与适配性，对标Cursor等AI编程工具。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/iflytek-unveils-astronclaw-with-sandbox-isolation-and-multimodel-switching.html",
+    "category": "应用落地",
+    "tags": [
+      "科大讯飞",
+      "AstronClaw",
+      "AI编程",
+      "沙箱隔离"
+    ],
+    "id": 4
+  },
+  {
+    "date": "2026-06-01",
+    "title": "清华大学开源通用化学AI模型BioMedGPT-Mol",
+    "summary": "清华大学智能产业研究院（AIR）与水木分子合作发布开源化学领域专用AI模型BioMedGPT-Mol，采用通用架构设计，助力药物研发与分子设计，推动AI for Science在化学领域的落地。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/tsinghua-air-and-shuimu-molecules-open-source-generalpurpose-chemical-ai-model-biomedgptmol.html",
+    "category": "开源模型",
+    "tags": [
+      "清华大学",
+      "BioMedGPT-Mol",
+      "化学AI",
+      "药物研发"
+    ],
+    "id": 5
+  },
+  {
+    "date": "2026-06-01",
+    "title": "微软Edge升级AI管控，阻止「影子AI」并引导用户使用Copilot",
+    "summary": "微软Edge浏览器升级AI管控策略，通过技术手段阻止未经批准的「影子AI」使用，同时引导用户转向官方Copilot服务，强化企业AI治理，防范未经审核的AI工具带来的数据泄露风险。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/microsoft-edge-tightens-ai-controls-to-block-shadow-ai-and-steer-users-toward-copilot.html",
+    "category": "应用落地",
+    "tags": [
+      "微软",
+      "Edge",
+      "Copilot",
+      "影子AI",
+      "AI治理"
+    ],
+    "id": 6
+  },
+  {
+    "date": "2026-06-01",
+    "title": "英伟达推出OpenClaw变体，解决AI代理最大安全挑战",
+    "summary": "英伟达在GTC 2026大会上推出OpenClaw变体版本，旨在解决AI代理面临的最大安全挑战。该技术涉及NemoClaw安全框架，为AI智能体的企业级部署提供更可靠的安全保障。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/nvidias-openclaw-variant-may-solve-its-biggest-challenge-security.html",
+    "category": "AI Agent",
+    "tags": [
+      "英伟达",
+      "OpenClaw",
+      "AI安全",
+      "GTC 2026"
+    ],
+    "id": 7
+  },
+  {
+    "date": "2026-05-31",
+    "title": "商汤科技开源SenseNova U1，推出多模态原生统一架构",
+    "summary": "商汤科技宣布开源其最新多模态大模型SenseNova U1，采用原生统一架构设计，实现文本、图像、视频等多模态能力的深度融合，在多项评测中表现优异，推动多模态AI开源生态发展。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/sensetime-open-sources-sensenova-u1-delivering-a-multimodal-native-unified-architecture.html",
+    "category": "开源模型",
+    "tags": [
+      "商汤科技",
+      "SenseNova U1",
+      "多模态",
+      "开源模型"
+    ],
+    "id": 8
+  },
+  {
+    "date": "2026-05-31",
+    "title": "Spotify与环球音乐携手推出AI人声翻唱混音体验",
+    "summary": "流媒体音乐平台Spotify与环球音乐集团达成合作，共同推出基于AI技术的人声翻唱与混音创新功能，重塑音乐创作与消费体验，标志着AI音乐生成进入主流音乐产业核心环节。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/spotify-and-universal-music-partner-to-deliver-ai-vocal-cover-remix-experience.html",
+    "category": "生成式AI",
+    "tags": [
+      "Spotify",
+      "环球音乐",
+      "AI音乐",
+      "人声翻唱"
+    ],
+    "id": 9
+  },
+  {
+    "date": "2026-05-31",
+    "title": "中国AI应用规模首次超越美国，国产模型领跑全球排行榜",
+    "summary": "最新数据显示中国AI应用普及率首次超过美国，人民币兑美元汇率创三年新高，国产大模型在全球评测榜单中占据领先地位，反映出中国AI产业从跟跑到领跑的结构性转变。",
+    "source": "xix.ai",
+    "url": "https://xix.ai/zh/ainews/chinas-ai-usage-overtakes-us-renminbi-hits-threeyear-high-as-domestic-models-lead-global-rankings.html",
+    "category": "应用落地",
+    "tags": [
+      "中国AI",
+      "国产模型",
+      "AI应用",
+      "全球排名"
+    ],
+    "id": 10
+  },
+  {
+    "date": "2026-05-31",
+    "title": "谷歌DeepMind CEO哈萨比斯：AGI最快三年内到来",
+    "summary": "谷歌DeepMind CEO哈萨比斯预测，通用人工智能（AGI）最快可能在2029-2030年实现，关键突破或于未来三年内出现。他指出科技公司加大投入正加速多模态理解、自主决策和AI智能体等核心技术成熟。",
+    "source": "AIBase",
+    "url": "https://news.aibase.com/zh/news/28482",
+    "category": "大模型",
+    "tags": [
+      "DeepMind",
+      "哈萨比斯",
+      "AGI",
+      "通用人工智能"
+    ],
+    "id": 11
+  },
+  {
+    "date": "2026-05-31",
+    "title": "Anthropic年化收入突破470亿美元，Claude企业级应用大爆发",
+    "summary": "Anthropic公司宣布其年化收入突破470亿美元，展现了生成式AI在商业化的巨大潜力。自2月G轮融资后，旗舰模型Claude在企业级市场全面爆发，推动业绩飞速增长。",
+    "source": "AIBase",
+    "url": "https://news.aibase.com/zh/news/28463",
+    "category": "应用落地",
+    "tags": [
+      "Anthropic",
+      "Claude",
+      "商业化",
+      "企业级AI"
+    ],
+    "id": 12
+  },
+  {
+    "date": "2026-05-31",
+    "title": "史上最大芯片租赁交易：阿波罗与黑石筹资360亿美元为Anthropic扫货TPU",
+    "summary": "阿波罗全球管理与黑石集团计划联合发起约360亿美元债务融资，以「以租代买」模式为AI独角兽Anthropic提供资金支持购买谷歌TPU。这将成为史上规模最大的私募信贷交易之一。",
+    "source": "AIBase",
+    "url": "https://news.aibase.com/zh/news/28475",
+    "category": "硬件",
+    "tags": [
+      "Anthropic",
+      "TPU",
+      "芯片租赁",
+      "阿波罗",
+      "黑石"
+    ],
+    "id": 13
+  },
+  {
+    "date": "2026-05-31",
+    "title": "AI生成数学论文5篇被接收，00后华人少女退学创业获14亿融资",
+    "summary": "初创AI公司Axiom Math宣布其AI系统自2月以来提交的8篇数学论文中，5篇通过同行评审并被接收，标志着AI在纯数学研究领域取得突破性进展。创始人是退学创业的00后顶尖华人少女，已获14亿巨额融资。",
+    "source": "AIBase",
+    "url": "https://news.aibase.com/zh/news/28462",
+    "category": "生成式AI",
+    "tags": [
+      "Axiom Math",
+      "AI数学",
+      "论文生成",
+      "创业融资"
+    ],
+    "id": 14
+  },
+  {
     "date": "2026-05-31",
     "title": "李飞飞团队发布GPIC数据集，含1亿对图像-文本数据共28万亿像素",
     "summary": "李飞飞团队联合斯坦福等机构发布GPIC数据集，包含1亿对图像-文本数据共28万亿像素，旨在解决旧基准失效等问题，已免费开放并配套新评估协议。",
@@ -13,7 +226,7 @@
       "ImageNet",
       "计算机视觉"
     ],
-    "id": 1
+    "id": 15
   },
   {
     "date": "2026-05-31",
@@ -28,7 +241,7 @@
       "英联邦短篇小说奖",
       "AI伦理"
     ],
-    "id": 2
+    "id": 16
   },
   {
     "date": "2026-05-31",
@@ -43,7 +256,7 @@
       "AI游戏",
       "AIGC"
     ],
-    "id": 3
+    "id": 17
   },
   {
     "date": "2026-05-31",
@@ -58,7 +271,7 @@
       "大模型",
       "A股"
     ],
-    "id": 4
+    "id": 18
   },
   {
     "date": "2026-05-31",
@@ -73,7 +286,22 @@
       "华为昇腾",
       "大模型"
     ],
-    "id": 5
+    "id": 19
+  },
+  {
+    "date": "2026-05-30",
+    "title": "企业级AI搜索独角兽Glean年营收突破3亿美元",
+    "summary": "企业级AI搜索初创公司Glean宣布年化营收突破3亿美元，距1亿美元仅15个月，增长三倍。此前在「企业版谷歌」领域近乎无对手，现面临谷歌、微软、OpenAI等巨头竞争，但依然保持强劲势头。",
+    "source": "AIBase",
+    "url": "https://news.aibase.com/zh/news/28480",
+    "category": "应用落地",
+    "tags": [
+      "Glean",
+      "AI搜索",
+      "企业级",
+      "营收增长"
+    ],
+    "id": 20
   },
   {
     "date": "2026-05-29",
@@ -88,7 +316,7 @@
       "AI Agent",
       "工程协作"
     ],
-    "id": 6
+    "id": 21
   },
   {
     "date": "2026-05-29",
@@ -104,7 +332,7 @@
       "估值",
       "OpenAI"
     ],
-    "id": 7
+    "id": 22
   },
   {
     "date": "2026-05-28",
@@ -119,7 +347,7 @@
       "智驾芯片",
       "4nm"
     ],
-    "id": 8
+    "id": 23
   },
   {
     "date": "2026-05-28",
@@ -134,7 +362,7 @@
       "具身智能",
       "AI应用"
     ],
-    "id": 9
+    "id": 24
   },
   {
     "date": "2026-05-28",
@@ -149,7 +377,7 @@
       "载人机甲",
       "具身智能"
     ],
-    "id": 10
+    "id": 25
   },
   {
     "date": "2026-05-28",
@@ -164,7 +392,7 @@
       "算力",
       "投资"
     ],
-    "id": 11
+    "id": 26
   },
   {
     "date": "2026-05-28",
@@ -179,7 +407,7 @@
       "AI治理",
       "监管"
     ],
-    "id": 12
+    "id": 27
   },
   {
     "date": "2026-05-28",
@@ -194,7 +422,7 @@
       "融资",
       "AI智能体"
     ],
-    "id": 13
+    "id": 28
   },
   {
     "date": "2026-05-28",
@@ -209,7 +437,7 @@
       "AI实验室",
       "国际化"
     ],
-    "id": 14
+    "id": 29
   },
   {
     "date": "2026-05-28",
@@ -224,7 +452,7 @@
       "ChatGPT",
       "商业化"
     ],
-    "id": 15
+    "id": 30
   },
   {
     "date": "2026-05-28",
@@ -239,7 +467,7 @@
       "Graviton",
       "云算力"
     ],
-    "id": 16
+    "id": 31
   },
   {
     "date": "2026-05-28",
@@ -254,7 +482,7 @@
       "AI内存",
       "万亿市值"
     ],
-    "id": 17
+    "id": 32
   },
   {
     "date": "2026-05-27",
@@ -269,7 +497,7 @@
       "NDGI",
       "游戏引擎"
     ],
-    "id": 18
+    "id": 33
   },
   {
     "date": "2026-05-27",
@@ -284,7 +512,7 @@
       "融资",
       "英伟达"
     ],
-    "id": 19
+    "id": 34
   },
   {
     "date": "2026-05-27",
@@ -299,7 +527,7 @@
       "DeepSeek",
       "价格战"
     ],
-    "id": 20
+    "id": 35
   },
   {
     "date": "2026-05-27",
@@ -314,7 +542,7 @@
       "零售",
       "库存管理"
     ],
-    "id": 21
+    "id": 36
   },
   {
     "date": "2026-05-27",
@@ -329,7 +557,7 @@
       "Anthropic",
       "AI监管"
     ],
-    "id": 22
+    "id": 37
   },
   {
     "date": "2026-05-27",
@@ -344,10 +572,10 @@
       "决策AI",
       "北大系"
     ],
-    "id": 23
+    "id": 38
   },
   {
-    "id": 24,
+    "id": 39,
     "date": "2026-05-27",
     "title": "马斯克官宣 Grok 5：1.5 万亿参数，偷师 Cursor 狂练编程",
     "summary": "马斯克在 𝕏 上亲自官宣：1.5 万亿参数的 Grok 基座模型 V9-Medium 训练完成，是现役模型的整整三倍，2-3 周后面向公众发布。训练中灌入大量 Cursor 编程交互记录，剑指 AI 编程赛道。",
@@ -362,7 +590,7 @@
     ]
   },
   {
-    "id": 25,
+    "id": 40,
     "date": "2026-05-27",
     "title": "支付宝推出全球首个 Token Pay 服务，AI 付已完成 3 亿笔智能体支付",
     "summary": "支付宝推出全球首个 Token Pay 服务及 AI 钱包，完成全栈 AI 原生支付体系搭建。AI 付已完成 3 亿笔智能体支付，支持 95% 通用智能体框架，成为全球首个大规模商用的 AI 原生支付基建。",
@@ -377,7 +605,7 @@
     ]
   },
   {
-    "id": 26,
+    "id": 41,
     "date": "2026-05-27",
     "title": "面壁智能推出 AI 编写的预训练框架 ForgeTrain，华为昇腾训练加速 10%",
     "summary": "面壁智能发布全球首个 AI 完全编写的生产级大模型预训练框架 ForgeTrain，性能超英伟达 Megatron，华为昇腾训练加速 10%。同步开源 1B 端侧模型 MiniCPM5-1B，推动端侧 AI 发展。",
@@ -392,7 +620,7 @@
     ]
   },
   {
-    "id": 27,
+    "id": 42,
     "date": "2026-05-27",
     "title": "宇树科技 6 月 1 日科创板首发上会，人形机器人第一股临门一脚",
     "summary": "宇树科技将于 6 月 1 日被审议科创板首发事项，从受理到上会仅 66 天创科创板纪录。2025 年营收 16.99 亿，人形机器人业务占比超 50%，预计发行市值至少 420 亿。",
@@ -407,7 +635,7 @@
     ]
   },
   {
-    "id": 28,
+    "id": 43,
     "date": "2026-05-27",
     "title": "昆仑万维发布 SkyClaw 两款 Agent 模型，性能进入全球第一梯队",
     "summary": "昆仑万维发布 SkyClaw-v1.0 及轻量版两款 Agent 模型，性能进入全球第一梯队，价格仅主流一半甚至更低，兼容主流 Agent 框架，限时免费开放使用。",
@@ -422,7 +650,7 @@
     ]
   },
   {
-    "id": 29,
+    "id": 44,
     "date": "2026-05-27",
     "title": "AI 初创公司 Hark 获 7 亿美元 A 轮融资，英伟达押注",
     "summary": "AI 初创公司 Hark 完成 7 亿美元 A 轮融资，投后估值 60 亿美元。公司 2025 年底成立，计划打造消费者个人 AI 助手 + 原生 AI 硬件，英伟达参与投资。",
@@ -437,7 +665,7 @@
     ]
   },
   {
-    "id": 30,
+    "id": 45,
     "date": "2026-05-27",
     "title": "Anthropic 拟三年内向 SpaceX 支付近 450 亿美元购买算力",
     "summary": "据 Altimeter 披露，Anthropic 计划三年内向 SpaceX 支付近 450 亿美元购买算力，年费 150 亿、月费 12.5 亿，这将使 SpaceX 年化营收几乎翻倍。",
@@ -452,7 +680,7 @@
     ]
   },
   {
-    "id": 31,
+    "id": 46,
     "date": "2026-05-27",
     "title": "Kimi 完成 C 轮融资，投后估值 43 亿美元",
     "summary": "月之暗面旗下 Kimi 完成 C 轮融资，IDG 领投 5 亿美元，今日资本徐新推动，投后估值达 43 亿美元，持续加码大模型赛道竞争。",
@@ -467,7 +695,7 @@
     ]
   },
   {
-    "id": 32,
+    "id": 47,
     "date": "2026-05-27",
     "title": "MIT 何恺明团队与字节 Seed 证实：语言生成可在连续空间完成",
     "summary": "MIT 何恺明团队与字节 Seed 实验室同时发表论文，证实语言生成可在连续空间完成，效果优于传统离散 token 方式。这一发现可能颠覆现有大模型架构基础。",
@@ -482,7 +710,7 @@
     ]
   },
   {
-    "id": 33,
+    "id": 48,
     "date": "2026-05-27",
     "title": "字节跳动 2026 年 AI 基础设施支出提升至 2000 亿元",
     "summary": "字节跳动 2026 年 AI 基础设施支出提升 25% 至 2000 亿元，聚焦豆包大模型，裁撤 30% 非核心 AI 应用。豆包月活 4.49 亿居行业第一，但面临流量增长瓶颈。",
@@ -509,10 +737,10 @@
       "Baichuan-M4",
       "AI医疗"
     ],
-    "id": 34
+    "id": 49
   },
   {
-    "id": 35,
+    "id": 50,
     "date": "2026-05-26",
     "title": "国产 AI 芯片市场份额首破 50%，华为昇腾以 37% 断层领跑",
     "summary": "2026 年 Q1 国产 AI 芯片国内市场份额首次突破 50% 达 52.3%，华为昇腾以 37% 市占率断层领跑。英伟达在华份额从巅峰 95% 暴跌至 42.7%，中国 AI 算力自主可控迈出决定性一步。",
@@ -527,7 +755,7 @@
     ]
   },
   {
-    "id": 36,
+    "id": 51,
     "date": "2026-05-26",
     "title": "OpenAI 差点没了？总裁 Brockman 首次复盘 2023 年罢免危机",
     "summary": "OpenAI 总裁 Greg Brockman 首次公开复盘 2023 年奥特曼被罢免的 72 小时危机，讲述当天自己就辞职了，以及公司治理变迁与 AI 研发未来判断。",
@@ -542,7 +770,7 @@
     ]
   },
   {
-    "id": 37,
+    "id": 52,
     "date": "2026-05-26",
     "title": "Sam Altman 拿算力换股份：向 169 家 YC 公司各发 200 万美元 Token",
     "summary": "Sam Altman 宣布向 169 家 YC 公司各发放 200 万美元 Token 换取股权，总价值超 3 亿美元。这一创新投资模式引发业界热议，被视为 AI 时代的新型资本运作。",
@@ -557,7 +785,7 @@
     ]
   },
   {
-    "id": 38,
+    "id": 53,
     "date": "2026-05-25",
     "title": "GPT-5.6 意外泄露：150 万 token 上下文，零指令生成商业级 UI",
     "summary": "开发者在 OpenAI Codex 后台日志中发现未发布的 GPT-5.6（内部代号 iris-alpha），支持 150 万 token 上下文窗口，可零指令生成高质量商业级 UI。预计 6 月初发布，同期 Anthropic、Google 也将推出新模型。",
@@ -572,7 +800,7 @@
     ]
   },
   {
-    "id": 39,
+    "id": 54,
     "date": "2026-05-25",
     "title": "DeepMind AI 一夜破解 9 道悬置数十年的数学难题",
     "summary": "Google DeepMind 发布 AI 数学智能体 AlphaProof Nexus，结合大语言模型、强化学习与进化算法，解决了 9 道悬宕数十年的 Erdős 开放问题，其中最老的问题已悬置 56 年，单题算力成本仅几百美元。",
@@ -587,7 +815,7 @@
     ]
   },
   {
-    "id": 40,
+    "id": 55,
     "date": "2026-05-25",
     "title": "Anthropic 完成超 300 亿美元融资，估值突破 9000 亿美元",
     "summary": "Anthropic 最快本周完成超 300 亿美元融资，估值有望突破 9000 亿美元，超越 OpenAI 的 8520 亿美元估值，登顶全球 AI 初创企业估值榜首。本轮融资由红杉资本、Dragoneer、Altimeter 和 Greenoaks 联合领投。",
@@ -602,7 +830,7 @@
     ]
   },
   {
-    "id": 41,
+    "id": 56,
     "date": "2026-05-25",
     "title": "华为提出「韬定律」，以时间缩微替代几何缩微引领芯片演进",
     "summary": "华为在 IEEE ISCAS 2026 上正式发布「韬（τ）定律」，提出以「时间缩微」替代「几何缩微」作为半导体演进新原则。过去六年已基于该定律量产 381 款芯片，预计 2031 年高端芯片晶体管密度达等效 1.4nm 水平。",
@@ -617,7 +845,7 @@
     ]
   },
   {
-    "id": 42,
+    "id": 57,
     "date": "2026-05-25",
     "title": "Claude「永久大脑」升级：双模记忆系统 + 7×24 小时智能体平台",
     "summary": "Anthropic 为 Claude 测试双模记忆系统，新增文件记忆功能和 Dreams 后台记忆整理机制，并推出 7×24 小时永不下线的 Conway Agent 平台。首批企业使用后错误率降低 97%，文档处理提速 30%。",
@@ -632,7 +860,7 @@
     ]
   },
   {
-    "id": 43,
+    "id": 58,
     "date": "2026-05-25",
     "title": "AI 首次独立完成芯片设计：219 词需求到 7nm 版图仅 12 小时",
     "summary": "AI 初创公司 Verkor 开发的 Design Conductor 系统，仅用 219 个英文单词需求描述，12 小时内自主完成 7nm RISC-V CPU 从需求到版图的全设计流程，工程师全程未参与。CoreMark 分数达 3261，频率 1.48GHz。",
@@ -647,7 +875,7 @@
     ]
   },
   {
-    "id": 44,
+    "id": 59,
     "date": "2026-05-25",
     "title": "天机智能完成 10 亿元融资，具身智能赛道再添独角兽",
     "summary": "具身智能基础设施公司天机智能完成 10 亿元 B 轮及 B+ 轮融资，投后估值近百亿，由高瓴创投、美团战投联合领投，腾讯等跟投。公司是全球首家实现力控人形双臂量产交付的企业，2026 年 Q1 在手订单超 1 万台。",
@@ -662,7 +890,7 @@
     ]
   },
   {
-    "id": 45,
+    "id": 60,
     "date": "2026-05-25",
     "title": "面壁智能突破端侧大模型瓶颈：600 亿参数有望装进 8GB 手机",
     "summary": "面壁智能联合清华、OpenBMB 发布开源三值大模型 BitCPM-CANN，采用 1.58-bit 量化技术，节省约 6 倍显存，能力保留率最高达 97.2%。首次在华为昇腾上完成三值大模型训练，未来有望让 600 亿参数大模型运行在 8GB 内存手机上。",
@@ -677,7 +905,7 @@
     ]
   },
   {
-    "id": 46,
+    "id": 61,
     "date": "2026-05-24",
     "title": "OpenAI 发布 GPT-5 预览版，推理能力大幅提升",
     "summary": "OpenAI 今日发布了 GPT-5 的预览版本，在推理、代码生成和多模态理解方面都有显著提升。新模型在 MATH 基准测试中达到 95% 准确率。",
@@ -691,7 +919,7 @@
     ]
   },
   {
-    "id": 47,
+    "id": 62,
     "date": "2026-05-24",
     "title": "Google DeepMind 推出 Genie 3，可生成可交互的游戏世界",
     "summary": "Google DeepMind 发布了 Genie 3，一个能够从单张图像生成可交互 2D 游戏世界的 AI 模型。该模型可以创建具有物理一致性的游戏环境。",
@@ -705,7 +933,7 @@
     ]
   },
   {
-    "id": 48,
+    "id": 63,
     "date": "2026-05-23",
     "title": "DeepSeek-V4-Pro API 永久降价 75%，创全球大模型价格新低",
     "summary": "DeepSeek 宣布 V4-Pro 模型 API 永久降价至原价的四分之一，输入缓存命中仅 0.025 元/百万 Tokens，创全球主流大模型价格新低。同时传闻浙大天才少年崔添翼加盟，组建代码智能体团队 Harness 对标 Claude Code。",
@@ -720,7 +948,7 @@
     ]
   },
   {
-    "id": 49,
+    "id": 64,
     "date": "2026-05-23",
     "title": "Meta 开源 Llama 4，性能超越 GPT-4",
     "summary": "Meta 正式开源 Llama 4 系列模型，包含 Llama 4 Scout 和 Llama 4 Maverick 两个版本。在多项基准测试中，Llama 4 Maverick 的性能超越 GPT-4。",
@@ -734,7 +962,7 @@
     ]
   },
   {
-    "id": 50,
+    "id": 65,
     "date": "2026-05-23",
     "title": "Anthropic Claude 3.5 Opus 支持 100 万 token 上下文",
     "summary": "Anthropic 升级 Claude 3.5 Opus，现在支持 100 万 token 的上下文窗口，使其成为目前市场上上下文最长的商业 AI 模型。",
@@ -748,7 +976,7 @@
     ]
   },
   {
-    "id": 51,
+    "id": 66,
     "date": "2026-05-22",
     "title": "微软 Copilot 集成 Sora 视频生成能力",
     "summary": "微软宣布将 OpenAI 的 Sora 视频生成模型集成到 Copilot 中，用户现在可以通过自然语言描述生成高质量视频内容。",
@@ -763,7 +991,7 @@
     ]
   },
   {
-    "id": 52,
+    "id": 67,
     "date": "2026-05-22",
     "title": "英伟达发布 B200 GPU，专为大模型训练优化",
     "summary": "英伟达发布新一代 B200 GPU，采用 Blackwell 架构，专为大模型训练和推理优化。相比上一代 H100，训练速度提升 3 倍。",
@@ -778,7 +1006,7 @@
     ]
   },
   {
-    "id": 53,
+    "id": 68,
     "date": "2026-05-21",
     "title": "斯坦福大学开发出可解释性 AI 工具 XAI-Toolkit",
     "summary": "斯坦福大学研究团队发布了 XAI-Toolkit，一个开源工具包，帮助理解和解释深度学习模型的决策过程，提升 AI 的透明度和可信度。",
@@ -792,7 +1020,7 @@
     ]
   },
   {
-    "id": 54,
+    "id": 69,
     "date": "2026-05-21",
     "title": "AI 代理自主完成软件项目，成功率突破 60%",
     "summary": "最新研究显示，使用 GPT-5 和 Claude 3.5 的 AI 代理在 SWE-bench 软件工程基准测试中成功率突破 60%，接近初级工程师水平。",
@@ -806,7 +1034,7 @@
     ]
   },
   {
-    "id": 55,
+    "id": 70,
     "date": "2026-05-20",
     "title": "Google 发布 Gemini 3.5：速度 4 倍、价格砍半，全面布局智能体 AI",
     "summary": "在 Google I/O 2026 大会上，Google 正式发布 Gemini 3.5 系列模型，其中 Flash 版本速度达其他前沿模型的 4 倍，智能体任务费用不到竞品一半。同时推出个人 AI 智能体 Spark、AI 音频眼镜等产品，2026 年资本支出预计达 1800-1900 亿美元。",
